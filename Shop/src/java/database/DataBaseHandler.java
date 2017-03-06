@@ -722,22 +722,34 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
     @Override
     public ArrayList<Orders> GetUserOrders(String email) {
         try {
-            PreparedStatement preparedStatment= getConnection().prepareStatement("SELECT * FROM orders WHERE User_email=?");
-            preparedStatment.setString(1, email);
-            ResultSet resultset = preparedStatment.executeQuery();
-            while(resultset.next()){
-                
+            PreparedStatement preparedStatement1 = getConnection().prepareStatement("SELECT products_product_id FROM orderdetails");
+            ResultSet resultset1 = preparedStatement1.executeQuery();
+            ArrayList<Product> productList = new ArrayList<>();
+            while (resultset1.next()) {
+                int productID = resultset1.getInt("products_product_id");
+                Product product = getProduct(productID);
+                productList.add(product);
             }
+            PreparedStatement preparedStatement2 = getConnection().prepareStatement("SELECT * FROM orders WHERE User_email=?");
+            preparedStatement2.setString(1, email);
+            ResultSet resultset2 = preparedStatement2.executeQuery();
+            ArrayList<Orders> userOrdersList = new ArrayList<>();
+            while (resultset2.next()) {
+                Orders order = new Orders(email, resultset2.getString("date"), productList);
+                userOrdersList.add(order);
+            }
+            return userOrdersList;
         } catch (SQLException ex) {
             ex.printStackTrace();
+            return null;
         }
-        return null;
     }
 
     @Override
     public ArrayList<String> getUserThatHasOrders() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     @Override
     public boolean CheckRechargeNumberExistance(int rechargeCardNumber) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
