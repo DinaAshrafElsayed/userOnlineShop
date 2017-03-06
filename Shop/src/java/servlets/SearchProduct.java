@@ -57,6 +57,10 @@ public class SearchProduct extends HttpServlet {
             if(category.equals("All")){
                 category="";
             }
+            if(productName ==null)
+            {
+                productName = "";
+            }
             ArrayList<Product> products = dataBaseHandler.
                     searchProducts(category, productName, productPrice);
             HttpSession session = request.getSession(true);
