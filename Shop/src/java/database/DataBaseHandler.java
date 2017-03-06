@@ -721,13 +721,27 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
     // updates
     @Override
     public ArrayList<Orders> GetUserOrders(String email) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            PreparedStatement preparedStatment= getConnection().prepareStatement("SELECT * FROM orders WHERE User_email=?");
+            preparedStatment.setString(1, email);
+            ResultSet resultset = preparedStatment.executeQuery();
+            while(resultset.next()){
+                
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 
     @Override
     public ArrayList<String> getUserThatHasOrders() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    @Override
+    public boolean CheckRechargeNumberExistance(int rechargeCardNumber) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     //end of updates
+
 }

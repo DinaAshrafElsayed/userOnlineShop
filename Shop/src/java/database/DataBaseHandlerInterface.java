@@ -39,6 +39,7 @@ public interface DataBaseHandlerInterface
     // updates
     public ArrayList<Orders> GetUserOrders(String email);
     public ArrayList<String> getUserThatHasOrders();
+    public boolean CheckRechargeNumberExistance(int rechargeCardNumber);
     //end of updates 
     
     // dina update

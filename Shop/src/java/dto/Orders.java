@@ -16,6 +16,12 @@ public class Orders {
     private String date;
     private ArrayList<Product> orderedProducts;
 
+    public Orders(String userEmail, String date, ArrayList<Product> orderedProducts) {
+        this.userEmail = userEmail;
+        this.date = date;
+        this.orderedProducts = orderedProducts;
+    }
+
     /**
      * @return the userEmail
      */
