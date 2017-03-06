@@ -5,6 +5,7 @@
  */
 package database;
 
+import dto.Orders;
 import dto.Product;
 import dto.User;
 import java.util.ArrayList;
@@ -36,6 +37,11 @@ public interface DataBaseHandlerInterface
     public boolean CheckCreditCardNumberExistance(int number);//done
     
     // updates
+    public ArrayList<Orders> GetUserOrders(String email);
+    public ArrayList<String> getUserThatHasOrders();
+    //end of updates 
     
-    //end of updates
+    // dina update
+    
+    // end dina update
 }

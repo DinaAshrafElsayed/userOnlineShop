@@ -8,12 +8,17 @@
                 </strong></div>
             <div class="span6">
                 <div class="pull-right">
-
+                    
+                    <!-- samir start -->
+                    
                     <span><font><b>balance</b></font></span>
                     <span class="btn btn-mid" id="userBalance">
                         <c:out value="${sessionScope.user.getCreditCard().getBalance()}"/>
                     </span>
                     <span class="">£</span>
+                    
+                    <!-- samir end -->
+                    
                     <a href="ShoppingCart.jsp"><span class="btn btn-mid btn-primary" id="cart"><i class="icon-shopping-cart icon-white"></i>
                             <i id="shoppingCart"> 
                                 <c:if test="${!empty sessionScope.cart}">
