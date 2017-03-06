@@ -55,7 +55,7 @@ public class AddToShoppingCart extends HttpServlet {
             if (shoppingCart == null) {
                 shoppingCart = new ShoppingCart();
             }
-            if (quantity != null) {
+            if (quantity != null && !quantity.equals("undefined")) {
                 productQuantity  = Integer.parseInt(quantity);
             }
             Product product = dataBaseHandler.getProduct(productID);

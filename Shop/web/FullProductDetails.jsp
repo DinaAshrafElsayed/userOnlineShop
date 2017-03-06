@@ -13,6 +13,7 @@
         <jsp:include page ='head.jsp'/>
         <script src="JS/jquery.js"></script>
         <script src="JS/getAllProducts.js"></script>
+         <script src="JS/addToShoppingCart.js"></script>
     </head>
     <body>
         <c:if test="${!empty sessionScope.user}">

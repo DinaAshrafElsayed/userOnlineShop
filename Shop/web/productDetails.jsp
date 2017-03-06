@@ -31,8 +31,8 @@
                     <div class="control-group">
                         <label class="control-label"><span><c:out value="${product.getPrice()} $"/></span> </label>
                         <div class="controls">
-                            <input type="number" value="1" class="span1" placeholder="Qty." min="1" max ="${product.getQuantity()}">
-                            <button type="submit" class="btn btn-large btn-primary pull-right"> Add to cart <i class=" icon-shopping-cart"></i></button>
+                            <input type="number" id="productQuantity" value="1" class="span1" placeholder="Qty." min="1" max ="${product.getQuantity()}">
+                            <button type="button" class="btn btn-large btn-primary pull-right" onclick="addToCart(this)"> Add to cart <i class="icon-shopping-cart" id='${item.getId()}'></i></i></button>
                         </div>
                     </div>
                 </form>

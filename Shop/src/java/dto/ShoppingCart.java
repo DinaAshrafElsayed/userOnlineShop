@@ -23,7 +23,7 @@ public class ShoppingCart {
     }
 
     public boolean addItem(Product product) {
-        if (increaseQuantity(product.getId())) {
+        if (increaseQuantity(product.getId(), product.getQuantity())) {
             System.out.println("exists");
             return true;
         } else {
@@ -62,10 +62,10 @@ public class ShoppingCart {
         }
         return discount;
     }
-    public boolean increaseQuantity(int productID) {
+    public boolean increaseQuantity(int productID,int quantity) {
         for (Product product : products) {
             if (productID == product.getId()) {
-                product.setQuantity(product.getQuantity() + 1);
+                product.setQuantity(product.getQuantity() + quantity);
                 System.out.println("in inc "+product.getQuantity());
                 return true;
             }
