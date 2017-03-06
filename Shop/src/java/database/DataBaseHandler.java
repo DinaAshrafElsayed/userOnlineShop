@@ -7,6 +7,7 @@ package database;
 
 import dto.CreditCard;
 import dto.ImagesUrl;
+import dto.Orders;
 import dto.Product;
 import dto.User;
 import java.sql.Connection;
@@ -31,7 +32,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
     // close connection in context destruction
     private static Connection connection = null;
     private static DataBaseHandler instance = null;
-    
+
     public static DataBaseHandler getinstance() {
         if (instance == null) {
             return new DataBaseHandler();
@@ -45,11 +46,11 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             Class.forName("com.mysql.jdbc.Driver");
             DataBaseHandler.connection = createConnection();
             System.out.println("success");
-        }catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         }
     }
-    
+
     private Connection getConnection() {
         if (DataBaseHandler.connection == null) {
             DataBaseHandler.connection = createConnection();
@@ -716,9 +717,17 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             return true;
         }
     }
-    
-    // updates
-    
-    //end of updates
 
+    // updates
+    @Override
+    public ArrayList<Orders> GetUserOrders(String email) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<String> getUserThatHasOrders() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    //end of updates
 }
