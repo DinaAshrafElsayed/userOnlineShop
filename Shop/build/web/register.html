@@ -1,0 +1,123 @@
+<div class="span9">
+    <ul class="breadcrumb">
+        <li><a href="index.html">Home</a> <span class="divider">/</span></li>
+        <li class="active">Registration</li>
+    </ul>
+    <h3> Registration</h3>	
+    <div class="well">
+        <form class="form-horizontal " >
+            <h4>Your personal information</h4>
+
+            <div class="control-group">
+                <label class="control-label" for="inputFname1">First name <sup>*</sup></label>
+                <div class="controls">
+                    <input type="text" id="firstName" placeholder="First Name" required>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="inputLnam">Last name <sup>*</sup></label>
+                <div class="controls">
+                    <input type="text" id="lastName" placeholder="Last Name" required>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="input_email">Email <sup>*</sup></label>
+                <div class="controls">
+                    <input type="text" id="email" placeholder="Email"  onblur="validEmail()" required >
+                    <span>
+                        <div class="alert  alert-error fade in custome-error" id="email_error">
+                            <button type="button" class="close" data-dismiss="alert">�</button>
+                            <strong>Email must be in form xyz@xxx.com</strong>
+                        </div>
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="password">Password <sup>*</sup></label>
+                <div class="controls">
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+            </div>		
+            <div class="control-group">
+                <label class="control-label" for="confirmPassword">Confirm Password <sup>*</sup></label>
+                <div class="controls">
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password " required>
+                    <span>
+                        <div class="alert  alert-error fade in custome-error" id="password_error">
+                            <button type="button" class="close" data-dismiss="alert">�</button>
+                            <strong>password not matched</strong>
+                        </div>
+                    </span>
+                </div>
+            </div>	  
+            <div class="control-group">
+                <label class="control-label">Date of Birth</label>
+                <div class="controls">
+                    <input type="date" id="DateOfBirth"/> 
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="gender">Gender<sup>*</sup></label>
+                <div class="controls">
+                    <select id="gender" >
+                        <option value="male">Male</option><option value="female">Female</option></select>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="address">Address</label>
+                <div class="controls">
+                    <input type="text" id="address" placeholder="Adress"/>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="mobile">Mobile Phone<sup>*</sup>	</label>
+                <div class="controls">
+                    <input type="tel"  name="mobile" id="mobile" placeholder="Mobile Phone" onblur="validPhone()" required /> 
+                    <span>
+                        <div class="alert  alert-error fade in custome-error" id="mobile_error">
+                            <button type="button" class="close" data-dismiss="alert">�</button>
+                            <strong>phone must be in form 0(1-2)(0-9) 11 digit</strong>
+                        </div>
+                    </span>
+                </div>
+            </div>
+
+            <h4>Credit Card Information</h4>
+            <div class="control-group">
+                <label class="control-label" for="mobile">Number</label>
+                <div class="controls">
+                    <input type="number" id="creditCardNumber" placeholder="credit Card Number" onblur="validCreditNumber()" /> <span>
+                        <div class="alert  alert-error fade in custome-error" id="credit_error">
+                            <button type="button" class="close" data-dismiss="alert">�</button>
+                            <strong>Enter Valid Credit Card Number</strong>
+                        </div>
+                    </span>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="mobile">Expire Date </label>
+                <div class="controls">
+                    <input type="date" id="creditCardExpireDate"/> 
+                </div>
+            </div>
+
+            <p><sup>*</sup>Required field</p>
+
+            <div class="control-group">
+                <div class="controls">
+                    <input type="hidden" name="email_create" value="1">
+                    <input type="hidden" name="is_new_customer" value="1">
+                    <input class="btn btn-large btn-success" type="submit" value="Register" />
+                </div>
+            </div>		
+        </form>
+    </div>
+
+</div>
