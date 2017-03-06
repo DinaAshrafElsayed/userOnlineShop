@@ -23,10 +23,12 @@
                             </c:if>
                         </ul>
                     </div>
-                    <div class="item">
-                        <ul class="thumbnails">
-                            <c:if test="${!empty sessionScope.products}">
-                                <c:forEach items="${sessionScope.products}" var="item" varStatus="loop" begin="4">
+                    <c:if test="${!empty sessionScope.products}">
+                        <c:forEach items="${sessionScope.products}" var="item" varStatus="loop" begin="4">                           
+                            <c:if test="${loop.index % 4 == 0}">                               
+                                <div class="item">
+                                    <ul class="thumbnails">
+                                    </c:if>
                                     <li class="span3">
                                         <div class="thumbnail">
                                             <i class="tag"></i>
@@ -37,10 +39,13 @@
                                             </div>
                                         </div>
                                     </li>
-                                </c:forEach>
+                                    <c:if test="${(loop.index+1) % 4 == 0 or loop.last }">
+                                    </ul>
+                                </div>
                             </c:if>
-                        </ul>
-                    </div>
+                             
+                        </c:forEach>
+                    </c:if>
                 </div>
                 <a class="left carousel-control" href="#featured" data-slide="prev"> &lt </a>
                 <a class="right carousel-control" href="#featured" data-slide="next"> &gt </a>
