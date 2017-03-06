@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `onlineShopping`.`orderDetails` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_products_has_order_order1`
     FOREIGN KEY (`order_id`)
-    REFERENCES `onlineShopping`.`order` (`id`)
+    REFERENCES `onlineShopping`.`orders` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
