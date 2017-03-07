@@ -47,6 +47,7 @@ public class SearchProduct extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String category = request.getParameter("category");
+            System.out.println("asdasdas"+category);
             String productName = request.getParameter("srchFld");
             double productPrice = -1;
             String price = request.getParameter("price");

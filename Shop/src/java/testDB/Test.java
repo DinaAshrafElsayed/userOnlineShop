@@ -22,9 +22,10 @@ public class Test {
     public static void main(String args[]) {
         DataBaseHandler db = DataBaseHandler.getinstance();
         CreditCard card = new CreditCard(1234, LocalDate.now(), 10000);
+        CreditCard card2 = new CreditCard(12345, LocalDate.now(), 10000);
         User u = new User("ahmed@gmail.com", "images/profile.jpg", "male", "ahmed", "labib", LocalDate.now(), "123", "012345678", "alex", "user", card);
-        if (db.login("dina@gmail.com","123")!=null) 
-        {
+        User u2 = new User("labib@gmail.com", "images/profile.jpg", "male", "ahmed", "labib", LocalDate.now(), "123", "012345678", "alex", "user", card);
+        if (db.login("dina@gmail.com", "123") != null) {
 //            ImagesUrl otherimages = new ImagesUrl();
 //            otherimages.addItem("image1");
 //            ImagesUrl otherimages2 = new ImagesUrl();
@@ -51,7 +52,12 @@ public class Test {
             ArrayList<Product> disproductArray = db.getAllproducts();
 //            System.out.println(disproductArray.size());
             System.out.println(db.createOrder("dina@gmail.com", disproductArray));
-            
+
+        }
+        ArrayList<String> ss = db.getUserThatHasOrders();
+        System.out.println(ss.size());
+        for (String s : ss) {
+            System.out.println(ss);
         }
     }
 }

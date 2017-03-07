@@ -747,12 +747,42 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
 
     @Override
     public ArrayList<String> getUserThatHasOrders() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            PreparedStatement preparedStatement = getConnection().prepareStatement("SELECT User_email FROM orders");
+            ResultSet resultset = preparedStatement.executeQuery();
+            ArrayList<String> listOfUserThatHasOrders = new ArrayList<>();
+            while (resultset.next()) {
+                String userEmail = resultset.getString("User_email");
+                if (!listOfUserThatHasOrders.contains(userEmail)) {
+                    listOfUserThatHasOrders.add(userEmail);
+                }
+            }
+            return listOfUserThatHasOrders;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
 
     @Override
     public boolean CheckRechargeNumberExistance(int rechargeCardNumber) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            PreparedStatement preparedStatement = getConnection().prepareStatement("select * from rechargecards"
+                    + " where number=?");
+            preparedStatement.setInt(1, rechargeCardNumber);
+            ResultSet resultset = preparedStatement.executeQuery();
+            if (resultset.next()) {
+                // recharge number found 
+                return true;
+            } else {
+                // recharge number not found 
+                return false;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            //couldnt know if productName exists or not so i cant add new product
+            return true;
+        }
     }
     //end of updates
 
