@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/ITI/servlets&amp;jsp/project/Shop%203-6-2017/Shop/src/java/testDB/Test.java</file>
-            <file>file:/E:/ITI/servlets&amp;jsp/project/Shop%203-6-2017/Shop/web/productSummary.jsp</file>
-            <file>file:/E:/ITI/servlets&amp;jsp/project/Shop%203-6-2017/Shop/src/java/dto/ShoppingCart.java</file>
-            <file>file:/E:/ITI/servlets&amp;jsp/project/Shop%203-6-2017/Shop/src/java/database/DataBaseHandler.java</file>
-            <file>file:/E:/ITI/servlets&amp;jsp/project/Shop%203-6-2017/Shop/src/java/servlets/AddToShoppingCart.java</file>
+            <file>file:/E:/shopProject/userOnlineShop/Shop/web/UserProfile.jsp</file>
+            <file>file:/E:/shopProject/userOnlineShop/Shop/web/registerPage.jsp</file>
+            <file>file:/E:/shopProject/userOnlineShop/Shop/web/headerVisitor.jsp</file>
+            <file>file:/E:/shopProject/userOnlineShop/Shop/web/FullUserProfile.jsp</file>
+            <file>file:/E:/shopProject/userOnlineShop/Shop/web/FullProductDetails.jsp</file>
         </group>
     </open-files>
 </project-private>

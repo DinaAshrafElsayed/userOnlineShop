@@ -771,7 +771,8 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
                     + " where number=?");
             preparedStatement.setInt(1, rechargeCardNumber);
             ResultSet resultset = preparedStatement.executeQuery();
-            if (resultset.next()) {
+            String status=resultset.getString("status");
+            if (resultset.next() && status.equals("1")) {
                 // recharge number found 
                 return true;
             } else {
@@ -781,7 +782,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
         } catch (SQLException ex) {
             ex.printStackTrace();
             //couldnt know if productName exists or not so i cant add new product
-            return true;
+            return false;
         }
     }
     //end of updates
