@@ -5,11 +5,9 @@
  */
 package servlets;
 
-import database.DataBaseHandler;
-import dto.Product;
+import dto.ShoppingCart;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,19 +17,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Ahmed labib
+ * @author Dina Ashraf
  */
-@WebServlet(name = "SearchProduct", urlPatterns = {"/SearchProduct"})
-public class SearchProduct extends HttpServlet {
-
-    DataBaseHandler dataBaseHandler;
-
-    @Override
-    public void init() throws ServletException {
-        super.init(); //To change body of generated methods, choose Tools | Templates.
-        this.dataBaseHandler = DataBaseHandler.getinstance();
-
-    }
+@WebServlet(name = "MainpulateShoppingCart", urlPatterns = {"/MainpulateShoppingCart"})
+public class MainpulateShoppingCart extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,30 +35,21 @@ public class SearchProduct extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String category = request.getParameter("category");
-            System.out.println("asdasdas"+category);
-            String productName = request.getParameter("srchFld");
-            double productPrice = -1;
-            String price = request.getParameter("price");
-            if(price!=null)
-            {
-                productPrice = Double.parseDouble(price);
+            int productID = Integer.parseInt(request.getParameter("productID"));
+            String requestedFunction = request.getParameter("method");
+            System.out.println(requestedFunction);
+             HttpSession session = request.getSession(true);
+             ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("cart");
+            if (requestedFunction.equals("increase")) {
+                System.out.println("inc : "+ productID);
+                out.print(shoppingCart.increaseQuantity(productID, 1));
+            } else if (requestedFunction.equals("decrease")) {
+                System.out.println("dec : "+ productID);
+                out.print(shoppingCart.decreaseQuantity(productID));
+            } else {
+                System.out.println("rem : "+ productID);
+                out.print(shoppingCart.removeProduct(productID));
             }
-            if(category.equals("All")){
-                category="";
-            }
-            if(productName ==null)
-            {
-                productName = "";
-            }
-            ArrayList<Product> products = dataBaseHandler.
-                    searchProducts(category, productName, productPrice);
-            HttpSession session = request.getSession(true);
-            session.setAttribute("products", products);
-            System.out.println("size from search "+products.size());
-            
-            response.sendRedirect("index.jsp?category="+request.getParameter("category")+
-                    "&name="+productName);
         }
     }
 

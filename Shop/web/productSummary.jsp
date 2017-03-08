@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="JS/mainpulateShoppingCart.js"></script>
 <div class="span9">
     <ul class="breadcrumb">
         <li><a href="index.html">Home</a> <span class="divider">/</span></li>
@@ -64,7 +65,7 @@
                         <td> <img width="60" src="${item.getMainImageUrl()}" alt=""></td>
                         <td>${item.getProductName()}<br>${item.getDescription()}</td>
                         <td>
-                            <div class="input-append"><input class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons" size="16" value="${item.getQuantity()}" type="text"><button class="btn" type="button"><i class="icon-minus"onclick="${sessionScope.cart.decreaseQuantity(item.getId())}" ></i></button><button class="btn" type="button"><i class="icon-plus" onclick="${sessionScope.cart.increaseQuantity(item.getId(),1)}"></i></button><button class="btn btn-danger" type="button"><i class="icon-remove icon-white"></i></button>				</div>
+                            <div class="input-append"><input class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons" size="16" value="${item.getQuantity()}" type="text"><button class="btn" type="button" name="decrease" id="${item.getId()}"onclick="mainpulate(this)"><i class="icon-minus"  ></i></button><button class="btn" type="button" name="increase" id="${item.getId()}"onclick="mainpulate(this)"><i class="icon-plus" ></i></button><button class="btn btn-danger" type="button" name="remove" id="${item.getId()}"onclick="mainpulate(this)"><i class="icon-remove icon-white"></i></button>				</div>
                         </td>
                         <td>${item.getPrice()}</td>
                         <td>${item.getDiscount()}%</td>

@@ -14,14 +14,14 @@
             </div><!--<span class="badge badge-warning pull-right" id="cartPrice">$155.00</span>--></a>
     </div>
     <ul id="sideManu" class="nav nav-tabs nav-stacked">
-        <li class="subMenu open"><a> ELECTRONICS [230]</a>
+        <form class="subMenu open" method="post" action="SearchProduct"><a> ELECTRONICS</a>
             <ul>
-                <li><a class="active" href="products.html"><i class="icon-chevron-right"></i>Cameras (100) </a></li>
-                <li><a href="products.html"><i class="icon-chevron-right"></i>Computers, Tablets & laptop (30)</a></li>
-                <li><a href="products.html"><i class="icon-chevron-right"></i>Mobile Phone (80)</a></li>
-                <li><a href="products.html"><i class="icon-chevron-right"></i>Sound & Vision (15)</a></li>
+                <li><a class="active" href="SearchProduct?category=Cameras"><i class="icon-chevron-right"></i>Cameras</a></li>
+                <li><a href="SearchProduct?category=Computers"><i class="icon-chevron-right"></i>Computers</a></li>
+                <li><a href="SearchProduct?category=Mobile Phone"><i class="icon-chevron-right"></i>Mobile Phone</a></li>
+                <li><a href="SearchProduct?category=Sound & Vision"><i class="icon-chevron-right"></i>Sound & Vision</a></li>
             </ul>
-        </li>
+        </form>
 
     </ul>
     <br/>

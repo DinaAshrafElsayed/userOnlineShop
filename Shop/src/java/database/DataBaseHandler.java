@@ -750,10 +750,12 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
         try {
             PreparedStatement preparedStatement = getConnection().prepareStatement("SELECT User_email FROM orders");
             ResultSet resultset = preparedStatement.executeQuery();
-            ArrayList<String> listOfUserThatHasOrders=new ArrayList<>();
-            while(resultset.next()){
-                String userEmail=resultset.getString("User_email");
-                listOfUserThatHasOrders.add(userEmail);
+            ArrayList<String> listOfUserThatHasOrders = new ArrayList<>();
+            while (resultset.next()) {
+                String userEmail = resultset.getString("User_email");
+                if (!listOfUserThatHasOrders.contains(userEmail)) {
+                    listOfUserThatHasOrders.add(userEmail);
+                }
             }
             return listOfUserThatHasOrders;
         } catch (SQLException ex) {
@@ -767,7 +769,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
         try {
             PreparedStatement preparedStatement = getConnection().prepareStatement("select * from rechargecards"
                     + " where number=?");
-            preparedStatement.setInt(1,rechargeCardNumber);
+            preparedStatement.setInt(1, rechargeCardNumber);
             ResultSet resultset = preparedStatement.executeQuery();
             if (resultset.next()) {
                 // recharge number found 
