@@ -10,10 +10,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <jsp:include page ='head.jsp'/>
+        
         <link href="themes/css/user_profile.css" rel="stylesheet">
         <script src="JS/jquery.js"></script>
-        <link rel="stylesheet" href="themes/css/bootstrap.min.css">
+        
         <script src="JS/jquery.min.js"></script>
         <!-- jQuery library -->
         <!-- Latest compiled JavaScript -->
@@ -21,14 +21,10 @@
         <script src="JS/getAllProducts.js"></script>
         <script src="JS/addToShoppingCart.js"></script>
         <script src="JS/userProfile.js"></script>
+        <jsp:include page ='head.jsp'/>
     </head>
     <body>
-        <c:if test="${!empty sessionScope.user}">
             <jsp:include page ='headeruser.jsp'/>
-        </c:if> 
-        <c:if test="${empty sessionScope.user}">
-            <jsp:include page ='headerVisitor.jsp'/>
-        </c:if> 
         <div id="mainBody">
             <div class="container">
                 <div class="row" id="includeBody">
