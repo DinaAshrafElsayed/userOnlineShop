@@ -19,7 +19,7 @@ public class Logout extends HttpServlet {
         HttpSession session = request.getSession(false);
         for (int i = 0; i < cookies.length; i++) {
             Cookie cooky = cookies[i];
-            if (cooky.getName().equals("user")) {
+            if (cooky.getName().equals("shoppingCookie")) {
                 cooky.setMaxAge(0);
                 response.addCookie(cooky);
                 System.out.println("cookie deleted");
@@ -27,8 +27,7 @@ public class Logout extends HttpServlet {
             }
         }
         session.removeAttribute("user");
-        session.invalidate();
-        System.out.println("session deleted");
+        System.out.println("user deleted");
         //request.getRequestDispatcher("index.jsp").forward(request, response);
         response.sendRedirect("index.jsp");
     }

@@ -19,5 +19,6 @@ function callback2(response, status, xhr)
         console.log("laaa found");
         $("#itemsNumber").html(response + " Items in your cart ");
         $("#shoppingCart").html(response);
+        location.reload();
     }
 }

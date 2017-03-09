@@ -2,7 +2,7 @@
 <script src="JS/mainpulateShoppingCart.js"></script>
 <div class="span9">
     <ul class="breadcrumb">
-        <li><a href="index.html">Home</a> <span class="divider">/</span></li>
+        <li><a href="index.jsp">Home</a> <span class="divider">/</span></li>
         <li class="active"> SHOPPING CART</li>
     </ul>
     <h3>  SHOPPING CART [ <small> ${sessionScope.cart.getNumberOfItems()}</small>]<a href="products.html" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a></h3>	
@@ -12,21 +12,22 @@
             <tbody><tr><th> I AM ALREADY REGISTERED  </th></tr>
                 <tr> 
                     <td>
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" action="Login" method="post">
                             <div class="control-group">
                                 <label class="control-label" for="inputUsername">Username</label>
                                 <div class="controls">
-                                    <input type="text" id="inputUsername" placeholder="Username">
+                                    <input type="text" name ="userEmail"id="inputUsername" placeholder="user email">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="inputPassword1">Password</label>
                                 <div class="controls">
-                                    <input type="password" id="inputPassword1" placeholder="Password">
+                                    <input type="password" name="userPassword" id="inputPassword1" placeholder="Password">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <div class="controls">
+                                    <input type="hidden" name ="shoppingCart" value="cart">
                                     <button type="submit" class="btn">Sign in</button> OR <a href="registerPage.jsp" class="btn">Register Now!</a>
                                 </div>
                             </div>
@@ -48,16 +49,6 @@
             </tr>
         </thead>
         <tbody>
-            <!--<tr>
-                <td> <img width="60" src="themes/images/products/4.jpg" alt=""></td>
-                <td>MASSA AST<br>Color : black, Material : metal</td>
-                <td>
-                    <div class="input-append"><input class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons" size="16" value="2" type="text"><button class="btn" type="button"><i class="icon-minus"></i></button><button class="btn" type="button"><i class="icon-plus"></i></button><button class="btn btn-danger" type="button"><i class="icon-remove icon-white"></i></button>				</div>
-                </td>
-                <td>$120.00</td>
-                <td>$25.00</td>
-                <td>$110.00</td>
-            </tr>-->
             <c:if test="${!empty sessionScope.cart}">
                 <c:forEach items="${sessionScope.cart.getProducts()}" var="item">
                     <tr>
@@ -106,5 +97,10 @@
         </tbody>
     </table>		
     <a href="index.jsp" class="btn btn-large"><i class="icon-arrow-left"></i> Continue Shopping </a>
-    <a href="login.html" class="btn btn-large pull-right">Next <i class="icon-arrow-right"></i></a>
+    <c:if test="${empty sessionScope.user}">
+        <div class ="btn btn-danger btn-large pull-right"><i>you have to sign in to checkout</i></div>
+    </c:if>
+    <c:if test="${!empty sessionScope.user}">
+        <a href="login.html" class="btn btn-large pull-right">Next <i class="icon-arrow-right"></i></a>
+        </c:if>
 </div>

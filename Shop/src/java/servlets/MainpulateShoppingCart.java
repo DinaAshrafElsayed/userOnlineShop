@@ -5,9 +5,11 @@
  */
 package servlets;
 
+import dto.Product;
 import dto.ShoppingCart;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,18 +40,40 @@ public class MainpulateShoppingCart extends HttpServlet {
             int productID = Integer.parseInt(request.getParameter("productID"));
             String requestedFunction = request.getParameter("method");
             System.out.println(requestedFunction);
-             HttpSession session = request.getSession(true);
-             ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("cart");
+            HttpSession session = request.getSession(true);
+            ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("cart");
+            int quantity = 0;
             if (requestedFunction.equals("increase")) {
-                System.out.println("inc : "+ productID);
-                out.print(shoppingCart.increaseQuantity(productID, 1));
+                System.out.println("inc : " + productID);
+                boolean added = shoppingCart.increaseQuantity(productID, 1);
+                out.print(added);
+                if (added) {
+                    quantity = 1;
+                }
             } else if (requestedFunction.equals("decrease")) {
-                System.out.println("dec : "+ productID);
-                out.print(shoppingCart.decreaseQuantity(productID));
+                System.out.println("dec : " + productID);
+                boolean removed = shoppingCart.decreaseQuantity(productID);
+                out.print(removed);
+                if (removed) {
+                    quantity = -1;
+                }
             } else {
-                System.out.println("rem : "+ productID);
-                out.print(shoppingCart.removeProduct(productID));
+                System.out.println("rem : " + productID);
+                int quantityOfProduct = shoppingCart.getQuantityOfProduct(productID);
+                boolean removed = shoppingCart.removeProduct(productID);
+                out.print(removed);
+                if (removed) {
+                    quantity = -1*quantityOfProduct;
+                }
+                System.out.println("removed "+quantity +" items ");
             }
+            ArrayList<Product> products = (ArrayList<Product>) session.getAttribute("products");
+            for (Product product1 : products) {
+                if (product1.getId() == productID) {
+                    product1.setQuantity(product1.getQuantity() - quantity);
+                }
+            }
+            session.setAttribute("products", products);
         }
     }
 

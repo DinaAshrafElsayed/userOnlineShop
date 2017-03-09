@@ -66,8 +66,7 @@ public class SearchProduct extends HttpServlet {
                     searchProducts(category, productName, productPrice);
             HttpSession session = request.getSession(true);
             session.setAttribute("products", products);
-            System.out.println("size from search "+products.size());
-            
+            System.out.println("size from search "+products.size());            
             response.sendRedirect("index.jsp?category="+request.getParameter("category")+
                     "&name="+productName);
         }
