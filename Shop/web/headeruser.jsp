@@ -8,17 +8,36 @@
                 </strong></div>
             <div class="span6">
                 <div class="pull-right">
-                    
+
                     <!-- samir start -->
-                    
+
                     <span><font><b>balance</b></font></span>
-                    <span class="btn btn-mid" id="userBalance">
-                        <c:out value="${sessionScope.user.getCreditCard().getBalance()}"/>
-                    </span>
-                    <span class="">£</span>
-                    
+                    <a href="#rechargeModal" role="button" data-toggle="modal" style="padding-right:0">
+                        <span class="btn btn-mid" id="userBalance">
+                            <c:out value="${sessionScope.user.getCreditCard().getBalance()}"/>
+                        </span>
+                    </a>
+                    <div id="rechargeModal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                            <h3>Balance Recharge</h3>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" action="RechargeBalance" method="POST">
+                                <div class="control-group">
+                                    <input type="text" maxlength="8" onkeyup="checkCardNumberExistance()" id="cardNumber" name="cardNumber" placeholder="Enter 8 digits of card number"  required><div id="CardNumberResult" style="display: inline"></div>
+                                </div>
+                                <button type="submit" class="btn btn-success" id="rechargeButton" disabled="true">Recharge</button>
+                                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                            </form>
+
+                        </div>
+                    </div>
+
+                    <span>£</span>
+
                     <!-- samir end -->
-                    
+
                     <a href="ShoppingCart.jsp"><span class="btn btn-mid btn-primary" id="cart"><i class="icon-shopping-cart icon-white"></i>
                             <i id="shoppingCart"> 
                                 <c:if test="${!empty sessionScope.cart}">
@@ -55,7 +74,7 @@
                 <ul id="topMenu" class="nav pull-right">
                     <li class=""><a href="DiscountedProduct">Specials Offer</a></li>
 
-                    <li class=""><a href="contact.html">Contact</a></li>
+                    <li class=""><a href="FullUserProfile.jsp">Contact</a></li>
                     <li class="">
                         <a href="/Shop/Logout" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-danger">Log Out</span></a>
 

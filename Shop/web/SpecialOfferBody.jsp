@@ -28,11 +28,13 @@
                 <div class="span3 alignR">
                     <form class="form-horizontal qtyFrm">
                         <h3> <c:out value="${discountedItem.getPrice()}"/></h3>
-                        <label class="checkbox">
-                            <input type="checkbox">  Adds product to compare
-                        </label><br/>
+                        <c:if test="${discountedItem.getQuantity()>0}">
                         <a href="GetProduct?id=${discountedItem.getId()}" class="btn btn-large btn-primary"> Add to <i class=" icon-shopping-cart"></i></a>
                         <a href="GetProduct?id=${discountedItem.getId()}" class="btn btn-large"><i class="icon-zoom-in"></i></a>
+                        </c:if>
+                        <c:if test="${discountedItem.getQuantity()==0}">
+                        <h4 style="text-align:center;color: red;">SoldOut</h4>    
+                        </c:if>
                     </form>
                 </div>
             </div>
@@ -48,8 +50,12 @@
                         <a href="GetProduct?id=${discountedItem.getId()}"><img src="${discountedItem.getMainImageUrl()}" alt=""/></a>
                         <div class="caption">
                             <h5><c:out value="${discountedItem.getProductName()}"/></h5>
+                            <c:if test="${discountedItem.getQuantity()>0}">
                             <h4 style="text-align:center"><a class="btn" href="GetProduct?id=${discountedItem.getId()}"> <i class="icon-zoom-in"></i></a> <a class="btn " href="#" onclick="addToCart(this)">Add to <i class="icon-shopping-cart" id='${discountedItem.getId()}'></i></a> <a class="btn btn-primary" href="#"><c:out value="${discountedItem.getPrice()}$"/></a></h4>
-                        
+                            </c:if>
+                        <c:if test="${discountedItem.getQuantity()==0}">
+                        <h4 style="text-align:center;color: red;">SoldOut  <label class="btn btn-primary"><c:out value="${item.getPrice()}$"/></label></h4>    
+                        </c:if>
                         </div>
                     </div>
                 </li>
@@ -58,6 +64,5 @@
             <hr class="soft"/>
         </div>
     </div>
-    <a href="compair.html" class="btn btn-large pull-right">Compare Product</a>
     <br class="clr"/>
 </div>

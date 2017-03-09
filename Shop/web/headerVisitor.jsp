@@ -44,13 +44,12 @@
                 <ul id="topMenu" class="nav pull-right">
                     <li class=""><a href="DiscountedProduct">Specials Offer</a></li>
 
-                    <li class=""><a href="contact.html">Contact</a></li>
                     <li class="">
                         <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
 
                         <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                                 <h3>Login Block</h3>
                             </div>
                             <div class="modal-body">

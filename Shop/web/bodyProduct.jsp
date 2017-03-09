@@ -15,7 +15,12 @@
                                             <a href="GetProduct?id=${item.getId()}"><img src="${item.getMainImageUrl()}" alt=""></a>
                                             <div class="caption">
                                                 <h5><c:out value="${item.getProductName()}"/></h5>
-                                                <h4 style="text-align:center"> <a class="btn " href="#" onclick="addToCart(this)">Add to <i class="icon-shopping-cart" id='${item.getId()}'></i></a> <a class="btn btn-primary" href="#"><c:out value="${item.getPrice()}$"/></a></h4>
+                                                <c:if test="${item.getQuantity() >0}">
+                                                    <h4 style="text-align:center"> <a class="btn " href="#" onclick="addToCart(this)">Add to <i class="icon-shopping-cart" id='${item.getId()}'></i></a> <a class="btn btn-primary" href="#"><c:out value="${item.getPrice()}$"/></a></h4>
+                                                        </c:if>
+                                                        <c:if test="${item.getQuantity() ==0}">
+                                                    <h4 style="text-align:center;color: red;">SoldOut <label class="btn btn-primary"><c:out value="${item.getPrice()}$"/></label></h4>    
+                                                </c:if>
                                             </div>
                                         </div>
                                     </li>
@@ -35,7 +40,12 @@
                                             <a href="GetProduct?id=${item.getId()}"><img src="${item.getMainImageUrl()}" alt=""></a>
                                             <div class="caption">
                                                 <h5><c:out value="${item.getProductName()}"/></h5>
-                                                <h4 style="text-align:center"> <a class="btn " href="#" onclick="addToCart(this)">Add to <i class="icon-shopping-cart" id='${item.getId()}'></i></a> <a class="btn btn-primary" href="#"><c:out value="${item.getPrice()}$"/></a></h4>
+                                                <c:if test="${item.getQuantity() >0}">
+                                                    <h4 style="text-align:center"> <a class="btn " href="#" onclick="addToCart(this)">Add to <i class="icon-shopping-cart" id='${item.getId()}'></i></a> <a class="btn btn-primary" href="#"><c:out value="${item.getPrice()}$"/></a></h4>
+                                                        </c:if>
+                                                        <c:if test="${item.getQuantity() ==0}">
+                                                    <h4 style="text-align:center;color: red;">SoldOut <label class="btn btn-primary"><c:out value="${item.getPrice()}$"/></label></h4>    
+                                                    </c:if>
                                             </div>
                                         </div>
                                     </li>
@@ -43,7 +53,7 @@
                                     </ul>
                                 </div>
                             </c:if>
-                             
+
                         </c:forEach>
                     </c:if>
                 </div>
@@ -64,7 +74,12 @@
                                 <c:out value="${item.getProductName()}"/>
                             </h5>
                             <p> <c:out value="${item.getDescription()}"/></p>
-                            <h4 style="text-align:center"><a class="btn" href="GetProduct?id=${item.getId()}"> <i class="icon-zoom-in"></i></a> <a class="btn " href="#" onclick="addToCart(this)">Add to <i class="icon-shopping-cart" id='${item.getId()}'></i></a> <a class="btn btn-primary" href="#"><c:out value="${item.getPrice()}$"/></a></h4>
+                            <c:if test="${item.getQuantity() >0}">
+                                <h4 style="text-align:center"><a class="btn" href="GetProduct?id=${item.getId()}"> <i class="icon-zoom-in"></i></a> <a class="btn " href="#" onclick="addToCart(this)">Add to <i class="icon-shopping-cart" id='${item.getId()}'></i></a> <a class="btn btn-primary" href="#"><c:out value="${item.getPrice()}$"/></a></h4>
+                                    </c:if>
+                                    <c:if test="${item.getQuantity() ==0}">
+                                <h4 style="text-align:center;color: red;">SoldOut <label class="btn btn-primary"><c:out value="${item.getPrice()}$"/></label></h4>    
+                                </c:if>
                         </div>
                     </div>
                 </li>
