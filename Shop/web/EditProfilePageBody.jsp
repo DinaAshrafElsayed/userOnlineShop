@@ -72,26 +72,6 @@
                 </div>
             </div>
 
-            <h4>Credit Card Information</h4>
-            <div class="control-group">
-                <label class="control-label" for="creditCardNumber">Number</label>
-                <div class="controls">
-                    <input  class="form-control" type="number" id="creditCardNumber" name="creditCardNumber" value="<c:out value="${userprofile.creditCard.creditCardNumber}"/>"name="creditCardNumber" placeholder="credit Card Number" onblur="validCreditNumber()" required/>
-                    <span>
-                        <div class="alert  alert-error fade in custome-error" id="credit_error">
-                            <strong>Enter Valid Credit Card Number</strong>
-                        </div>
-                    </span>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="creditCardExpireDate">Expire Date </label>
-                <div class="controls">
-                    <input type="date" id="creditCardExpireDate" name="creditCardExpireDate" value="<c:out value="${userprofile.creditCard.expireDate}"/>"required/> 
-                </div>
-            </div>
-
-
             <div class="control-group">
                 <div class="controls">
                     <input type="hidden" name="email_create" value="1">

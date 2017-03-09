@@ -56,10 +56,10 @@ public class EditUserProfile extends HttpServlet {
             String gender = request.getParameter("gender");
             String address = request.getParameter("address");
             String mobile = request.getParameter("mobile");
-            long creditCardNumber = Long.parseLong(request.getParameter("creditCardNumber"));
-            String creditCardExpireDate = request.getParameter("creditCardExpireDate");
-            LocalDate creditCardExpireDate1 = LocalDate.parse(creditCardExpireDate);
-            CreditCard creditCard = new CreditCard(creditCardNumber, creditCardExpireDate1, 1000);
+//            long creditCardNumber = Long.parseLong(request.getParameter("creditCardNumber"));
+//            String creditCardExpireDate = request.getParameter("creditCardExpireDate");
+//            LocalDate creditCardExpireDate1 = LocalDate.parse(creditCardExpireDate);
+//            CreditCard creditCard = new CreditCard(creditCardNumber, creditCardExpireDate1, 1000);
             // set the value in the editeduser object 
             //oldUser.setEmail(email);
             oldUser.setFirstName(firstName);
@@ -67,7 +67,7 @@ public class EditUserProfile extends HttpServlet {
             oldUser.setGender(gender);
             oldUser.setPhone(mobile);
             oldUser.setbDate(localDate);
-            oldUser.setCreditCard(creditCard);
+//            oldUser.setCreditCard(creditCard);
             oldUser.setAddress(address);
             if (dataBaseHandler.editUserDetials(oldUser)) {
                 User editedUser = dataBaseHandler.getUser(oldUser.getEmail());
