@@ -2,7 +2,7 @@
 <script src="JS/mainpulateShoppingCart.js"></script>
 <div class="span9">
     <ul class="breadcrumb">
-        <li><a href="index.html">Home</a> <span class="divider">/</span></li>
+        <li><a href="index.jsp">Home</a> <span class="divider">/</span></li>
         <li class="active"> SHOPPING CART</li>
     </ul>
     <h3>  SHOPPING CART [ <small> ${sessionScope.cart.getNumberOfItems()}</small>]<a href="products.html" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a></h3>	

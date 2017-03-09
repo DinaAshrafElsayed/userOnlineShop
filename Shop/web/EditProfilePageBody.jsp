@@ -2,7 +2,7 @@
 <div class="span9">
     <c:set var="userprofile" scope="session" value="${sessionScope.user}"/>
     <ul class="breadcrumb">
-        <li><a href="index.html">Home</a> <span class="divider">/</span></li>
+        <li><a href="index.jsp">Home</a> <span class="divider">/</span></li>
         <li class="active">Profile</li>
     </ul>
     <h3> <c:out value="${userprofile.getFirstName()}"/> <c:out value="${userprofile.getLastName()}"/></h3>	
