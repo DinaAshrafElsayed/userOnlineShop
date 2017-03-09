@@ -6,10 +6,11 @@
 package servlets;
 
 import database.DataBaseHandler;
+import dto.CreditCard;
 import dto.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
+import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,10 +19,19 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Samir
+ * @author Ahmed labib
  */
-@WebServlet(name = "RechargeBalance", urlPatterns = {"/RechargeBalance"})
-public class RechargeBalance extends HttpServlet {
+@WebServlet(name = "EditUserProfile", urlPatterns = {"/EditUserProfile"})
+public class EditUserProfile extends HttpServlet {
+
+    DataBaseHandler dataBaseHandler;
+
+    @Override
+    public void init() throws ServletException {
+        super.init(); //To change body of generated methods, choose Tools | Templates.
+        this.dataBaseHandler = DataBaseHandler.getinstance();
+
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,17 +44,37 @@ public class RechargeBalance extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String cardNumber = request.getParameter("cardNumber");
-        DataBaseHandler databaseRef = DataBaseHandler.getinstance();
-        //boolean isExist = databaseRef.CheckRechargeNumberExistance(Integer.parseInt(cardNumber));
-        //if (isExist) {
-            User user = (User) request.getSession().getAttribute("user");
-            databaseRef.updateUserBalance(user, 100);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
-            dispatcher.forward(request, response);
-        //}
-
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            User oldUser = (User) request.getSession(false).getAttribute("user");
+            String firstName = request.getParameter("firstName");
+            String lastName = request.getParameter("lastName");
+            //String email = request.getParameter("email");
+            String DateOfBirth = request.getParameter("DateOfBirth");
+            System.out.println("register " + DateOfBirth);
+            LocalDate localDate = LocalDate.parse(DateOfBirth);
+            String gender = request.getParameter("gender");
+            String address = request.getParameter("address");
+            String mobile = request.getParameter("mobile");
+            long creditCardNumber = Long.parseLong(request.getParameter("creditCardNumber"));
+            String creditCardExpireDate = request.getParameter("creditCardExpireDate");
+            LocalDate creditCardExpireDate1 = LocalDate.parse(creditCardExpireDate);
+            CreditCard creditCard = new CreditCard(creditCardNumber, creditCardExpireDate1, 1000);
+            // set the value in the editeduser object 
+            //oldUser.setEmail(email);
+            oldUser.setFirstName(firstName);
+            oldUser.setLastName(lastName);
+            oldUser.setGender(gender);
+            oldUser.setPhone(mobile);
+            oldUser.setbDate(localDate);
+            oldUser.setCreditCard(creditCard);
+            oldUser.setAddress(address);
+            if (dataBaseHandler.editUserDetials(oldUser)) {
+                User editedUser = dataBaseHandler.getUser(oldUser.getEmail());
+                request.getSession(false).setAttribute("user", editedUser);
+            }
+            response.sendRedirect("FullUserProfile.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

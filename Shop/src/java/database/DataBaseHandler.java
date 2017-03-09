@@ -771,10 +771,19 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
                     + " where number=?");
             preparedStatement.setInt(1, rechargeCardNumber);
             ResultSet resultset = preparedStatement.executeQuery();
-            String status=resultset.getString("status");
-            if (resultset.next() && status.equals("1")) {
-                // recharge number found 
-                return true;
+            if (resultset.next()) {
+                String status = resultset.getString("status");
+                System.out.println("status is "+status);
+                if (status.equals("1")) // recharge number found 
+                {
+                    PreparedStatement preparedStatment2 = getConnection().prepareStatement("UPDATE rechargecards "
+                            + "SET status=0 WHERE number=?");
+                    preparedStatment2.setInt(1, rechargeCardNumber);
+                    preparedStatment2.executeUpdate();
+                    return true;
+                } else {
+                    return false;
+                }
             } else {
                 // recharge number not found 
                 return false;

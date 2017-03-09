@@ -13,12 +13,11 @@
         <jsp:include page ='head.jsp'/>
         <link href="themes/css/user_profile.css" rel="stylesheet">
         <script src="JS/jquery.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="themes/css/bootstrap.min.css">
+        <script src="JS/jquery.min.js"></script>
         <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="JS/bootstrap.min.js"></script>
         <script src="JS/getAllProducts.js"></script>
         <script src="JS/addToShoppingCart.js"></script>
         <script src="JS/userProfile.js"></script>
@@ -31,9 +30,8 @@
             <jsp:include page ='headerVisitor.jsp'/>
         </c:if> 
         <div id="mainBody">
-            <div class="container" >
-                <div class="row">
-                    <jsp:include page="sideBar.jsp"/>
+            <div class="container">
+                <div class="row" id="includeBody">
                     <jsp:include page="UserProfile.jsp"/>
                 </div>
             </div>
