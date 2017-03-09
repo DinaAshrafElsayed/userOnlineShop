@@ -46,6 +46,7 @@ public class Login extends HttpServlet {
         String username = request.getParameter("userEmail");
         String password = request.getParameter("userPassword");
         String remember = request.getParameter("remember");
+        String cart = request.getParameter("shoppingCart");
         System.out.println(remember);
         System.out.println("before select");
         User user = instance.login(username, password);
@@ -57,17 +58,26 @@ public class Login extends HttpServlet {
                     cookie.setMaxAge(24 * 60 * 60);
                     response.addCookie(cookie);
                     System.out.println("cookie created");
-                    
+
                 }
             }
             HttpSession session = request.getSession(true);
             session.setAttribute("user", user);
             System.out.println("session created");
-            response.sendRedirect("index.jsp");
+            if (cart == null) {
+                response.sendRedirect("index.jsp");
+            } else {
+                response.sendRedirect("ShoppingCart.jsp");
+            }
         } else {
             System.out.println("user not found ");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-            dispatcher.forward(request, response);
+            if (cart == null) {
+                RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+                dispatcher.forward(request, response);
+            }
+            else {
+                response.sendRedirect("ShoppingCart.jsp");
+            }
         }
 
     }
