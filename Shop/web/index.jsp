@@ -17,7 +17,10 @@
         <script src="JS/addToShoppingCart.js"></script>
     </head>
     <body>
-
+        <!-- beshoy edit -->
+        
+        <!-- beshoy edit end -->
+        
         <c:if test="${!empty sessionScope.user}">
             <jsp:include page ='headeruser.jsp'/>
         </c:if> 

@@ -3,7 +3,6 @@
 <div class="span9">
     <ul class="breadcrumb">
         <li><a href="index.jsp">Home</a> <span class="divider">/</span></li>
-        <li><a href="products.html">Products</a> <span class="divider">/</span></li>
         <li class="active">product Details</li>
     </ul>	
     <div class="row">	  
@@ -32,7 +31,12 @@
                         <label class="control-label"><span><c:out value="${product.getPrice()} $"/></span> </label>
                         <div class="controls">
                             <input type="number" id="productQuantity" value="1" class="span1" placeholder="Qty." min="1" max ="${product.getQuantity()}">
+                            <c:if test="${item.getQuantity() >0}">
                             <button type="button" class="btn btn-large btn-primary pull-right" onclick="addToCart(this)"> Add to cart <i class="icon-shopping-cart" id='${item.getId()}'></i></i></button>
+                            </c:if>
+                            <c:if test="${item.getQuantity() ==0}">
+                                <h4 class="pull-right" style="color: red;"> SoldOut </h4>    
+                            </c:if>
                         </div>
                     </div>
                 </form>
