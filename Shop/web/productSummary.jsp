@@ -97,5 +97,10 @@
         </tbody>
     </table>		
     <a href="index.jsp" class="btn btn-large"><i class="icon-arrow-left"></i> Continue Shopping </a>
-    <a href="login.html" class="btn btn-large pull-right">Next <i class="icon-arrow-right"></i></a>
+    <c:if test="${empty sessionScope.user}">
+        <div class ="btn btn-danger btn-large pull-right"><i>you have to sign in to checkout</i></div>
+    </c:if>
+    <c:if test="${!empty sessionScope.user}">
+        <a href="login.html" class="btn btn-large pull-right">Next <i class="icon-arrow-right"></i></a>
+        </c:if>
 </div>
