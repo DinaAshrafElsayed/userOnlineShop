@@ -50,7 +50,9 @@ public class GetAllProducts extends HttpServlet {
             ArrayList<Product> products = dataBaseHandler.getAllproducts();
             System.out.println(products.size());
             HttpSession session = request.getSession(true);
-            session.setAttribute("products", products);
+            if (session.getAttribute("products") == null) {
+                session.setAttribute("products", products);
+            }
         }
     }
 

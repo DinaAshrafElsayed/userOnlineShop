@@ -9,6 +9,7 @@ import database.DataBaseHandler;
 import dto.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,6 +49,14 @@ public class GetProduct extends HttpServlet {
             int productID = Integer.parseInt(request.getParameter("id"));
             Product selectedProduct = dataBaseHandler.getProduct(productID);
             HttpSession session = request.getSession(true);
+            ArrayList<Product> products = (ArrayList<Product>) session.getAttribute("products");
+            if (products != null) {
+                for (Product product1 : products) {
+                    if (product1.getId() == productID) {
+                        selectedProduct = product1;
+                    }
+                }
+            }
             session.setAttribute("selectedProduct", selectedProduct);
             System.out.println("product id " + productID);
             response.sendRedirect("FullProductDetails.jsp");

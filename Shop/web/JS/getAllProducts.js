@@ -1,3 +1,6 @@
+$( document ).ready(function() {
+    $.get("GetAllProducts", callback);
+});
 function getAllProducts() {
         $.get("GetAllProducts", callback);
 }

@@ -33,7 +33,7 @@
         <div id="mainBody">
             <div class="container">
                 <div class="row" id="includeBody">
-                    <div id="sidebar"></div>
+                    <div id="sidebar"><jsp:include page ='sideBar.jsp'/></div>
                     <div id="products"></div>
                 </div>
             </div>

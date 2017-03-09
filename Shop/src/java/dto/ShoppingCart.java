@@ -5,6 +5,7 @@
  */
 package dto;
 
+import database.DataBaseHandler;
 import java.util.ArrayList;
 
 /**
@@ -21,15 +22,31 @@ public class ShoppingCart {
     public ArrayList<Product> getProducts() {
         return products;
     }
-
+    public int getQuantityOfProduct(int productID)
+    {
+        int quantity = 0;
+        for (Product product : products) {
+           if (productID == product.getId()) {
+               quantity = product.getQuantity();
+           } 
+        }
+        return quantity;
+    }
     public boolean addItem(Product product) {
         if (increaseQuantity(product.getId(), product.getQuantity())) {
             System.out.println("exists");
             return true;
         } else {
-            System.out.println("new");
-            return products.add(product);
+            DataBaseHandler databaseRef = DataBaseHandler.getinstance();
+            Product avaliableProduct = databaseRef.getProduct(product.getId());
+            if (avaliableProduct.getQuantity() >= product.getQuantity()) {
+                System.out.println("new");
+                return products.add(product);
+            } else {
+                return false;
+            }
         }
+
     }
 
     public int getNumberOfItems() {
@@ -66,11 +83,17 @@ public class ShoppingCart {
     }
 
     public boolean increaseQuantity(int productID, int quantity) {
+        DataBaseHandler databaseRef = DataBaseHandler.getinstance();
+        Product avaliableProduct = databaseRef.getProduct(productID);
         for (Product product : products) {
             if (productID == product.getId()) {
-                product.setQuantity(product.getQuantity() + quantity);
-                System.out.println("in inc " + product.getQuantity());
-                return true;
+                if (avaliableProduct.getQuantity() >= (product.getQuantity() + quantity)) {
+                    product.setQuantity(product.getQuantity() + quantity);
+                    System.out.println("in inc " + product.getQuantity());
+                    return true;
+                } else {
+                    return false;
+                }
             }
         }
         return false;
@@ -83,9 +106,9 @@ public class ShoppingCart {
                     System.out.println(">1");
                     product.setQuantity(product.getQuantity() - 1);
                     return true;
-                }
-                else
+                } else {
                     return products.remove(product);
+                }
             }
         }
         return false;

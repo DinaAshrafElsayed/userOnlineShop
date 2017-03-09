@@ -10,6 +10,7 @@ import dto.Product;
 import dto.ShoppingCart;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,7 +42,7 @@ public class AddToShoppingCart extends HttpServlet {
         this.dataBaseHandler = DataBaseHandler.getinstance();
 
     }
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -56,14 +57,23 @@ public class AddToShoppingCart extends HttpServlet {
                 shoppingCart = new ShoppingCart();
             }
             if (quantity != null && !quantity.equals("undefined")) {
-                productQuantity  = Integer.parseInt(quantity);
+                productQuantity = Integer.parseInt(quantity);
             }
             Product product = dataBaseHandler.getProduct(productID);
-            System.out.println("the quantity = "+productQuantity);
+            System.out.println("the quantity = " + productQuantity);
             product.setQuantity(productQuantity);
-            shoppingCart.addItem(product);
-            session.setAttribute("cart",shoppingCart);
-            System.out.println("the size of the shopping cart "+shoppingCart.getNumberOfItems());
+            boolean added = shoppingCart.addItem(product);
+            session.setAttribute("cart", shoppingCart);
+            ArrayList<Product> products = (ArrayList<Product>) session.getAttribute("products");
+            if (added) {
+                for (Product product1 : products) {
+                    if(product1.getId() == productID)
+                        product1.setQuantity(product1.getQuantity()-productQuantity);
+                        System.out.println("the new quantity is :"+product1.getQuantity());
+                }
+            }
+            session.setAttribute("products", products);
+            System.out.println("the size of the shopping cart " + shoppingCart.getNumberOfItems());
             out.print(shoppingCart.getNumberOfItems());
         }
     }
