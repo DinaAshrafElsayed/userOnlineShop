@@ -1,12 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src='JS/recharge.js'></script>
-<script src="JS/mainpulateShoppingCart.js"></script>
 <div class="span9">
     <ul class="breadcrumb">
         <li><a href="index.jsp">Home</a> <span class="divider">/</span></li>
         <li class="active"> SHOPPING CART</li>
     </ul>
-    <h3>  SHOPPING CART [ <small> ${sessionScope.cart.getNumberOfItems()}</small>]<a href="index.jsp" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a></h3>	
+    <h3>   Order [ <small> ${sessionScope.cart.getNumberOfItems()}</small>]<a href="index.jsp" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a></h3>	
     <hr class="soft">
     <c:if test="${empty sessionScope.user}">
         <table class="table table-bordered">
@@ -37,13 +36,18 @@
                 </tr>
             </tbody></table>
         </c:if>
-
+    <div class = "label-important "> 
+        <c:if test="${sessionScope.cart.isAllAvaliable() == false}">
+            sorry we have to make some updates to your order as some products weren't avaliable<br>
+            please check your order before u buy
+        </c:if>
+    </div>
     <table class="table table-bordered">
         <thead>
             <tr>
                 <th>Product</th>
                 <th>Description</th>
-                <th>Quantity/Update</th>
+                <th>Quantity</th>
                 <th>Price</th>
                 <th>Discount</th>
                 <th>Total</th>
@@ -57,7 +61,8 @@
                         <td> <img width="60" src="${item.getMainImageUrl()}" alt=""></td>
                         <td>${item.getProductName()}<br>${item.getDescription()}</td>
                         <td>
-                            <div class="input-append"><input class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons" size="16" value="${item.getQuantity()}" type="text"><button class="btn" type="button" name="decrease" id="${item.getId()}"onclick="mainpulate(this)"><i class="icon-minus"  ></i></button><button class="btn" type="button" name="increase" id="${item.getId()}"onclick="mainpulate(this)"><i class="icon-plus" ></i></button><button class="btn btn-danger" type="button" name="remove" id="${item.getId()}"onclick="mainpulate(this)"><i class="icon-remove icon-white"></i></button>				</div>
+                            <div class="input-append"><input class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons" size="16" 
+                                                             disabled="true" value="${item.getQuantity()}" type="text"></div>
                         </td>
                         <td>${item.getPrice()} / Item</td>
                         <td>${item.getDiscount()}%</td>
@@ -80,8 +85,8 @@
             </tr>
         </tbody>
     </table>
-    <c:if test="${!empty sessionScope.user}">
-        <table class="table table-bordered">
+     <c:if test="${!empty sessionScope.user and sessionScope.user.getCreditCard().getBalance() < sessionScope.cart.getTotalBill()}" >
+       <table class="table table-bordered">
             <tbody>
                 <tr>
                     <td> 
@@ -89,10 +94,9 @@
                             <div class="control-group">
                                 <label class="control-label"><strong> Recharge CODE: </strong> </label>
                                 <div class="controls">
-                                    <input type="hidden" name="shoppingCart" value ="cart">
+                                    <input type="hidden" name="checkout" value ="cart">
                                     <input type="number" class="input-medium" id="cardNumber2" name="cardNumber" placeholder="CODE" maxlength="8" >
                                     <button type="submit" class="btn" id="rechargeButton2"> ADD </button>
-                                    <div id="validationCard"></div>
                                 </div>
                             </div>
                         </form>
@@ -104,8 +108,11 @@
     <a href="index.jsp" class="btn btn-large"><i class="icon-arrow-left"></i> Continue Shopping </a>
     <c:if test="${empty sessionScope.user}">
         <div class ="btn btn-danger btn-large pull-right"><i>you have to sign in to checkout</i></div>
-            </c:if>
-            <c:if test="${!empty sessionScope.user}">
-        <a href="checkout" class="btn btn-large pull-right">next <i class="icon-arrow-right"></i></a>
+    </c:if>
+    <c:if test="${!empty sessionScope.user and sessionScope.user.getCreditCard().getBalance() > sessionScope.cart.getTotalBill()}">
+        <a href="SuccessOrder" class="btn btn-large btn-success pull-right">Confirm Order and BUY<i class="icon-arrow-right"></i></a>
         </c:if>
+        <c:if test="${!empty sessionScope.user and sessionScope.user.getCreditCard().getBalance() < sessionScope.cart.getTotalBill()}" >
+        <div class ="btn btn-danger btn-large pull-right"><i>you have to have enough Balance to Buy please Recharge</i></div>
+    </c:if>
 </div>

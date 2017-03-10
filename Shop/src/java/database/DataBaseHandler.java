@@ -475,11 +475,11 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             preparedStatment.setString(1, email);
             ResultSet resultset = preparedStatment.executeQuery();
             if (resultset.next()) {
-                int creditCardNum = resultset.getInt("creditCard_number");
+                long creditCardNum = resultset.getLong("creditCard_number");
                 preparedStatment = getConnection().prepareStatement("select balance from creditcard where "
                         + "number=?");
                 System.out.println(creditCardNum);
-                preparedStatment.setInt(1, creditCardNum);
+                preparedStatment.setLong(1, creditCardNum);
                 resultset = preparedStatment.executeQuery();
 
                 if (resultset.next()) {

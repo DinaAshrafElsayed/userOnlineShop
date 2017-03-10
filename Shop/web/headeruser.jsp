@@ -58,10 +58,10 @@
                 <span class="icon-bar"></span>
             </a>
             <div class="navbar-inner">
-                <a class="brand" href="index.jsp"><img src="themes/images/logo.png" alt="Bootsshop"></a>
+                <a class="brand" href="index.jsp"><img src="themes/images/logo.png" alt="electricShop"></a>
                 <form class="form-inline navbar-search" method="post" action="SearchProduct">
-                    <input id="srchFld" name="srchFld"class="srchTxt" type="text">
-                    <select class="srchTxt"name="category" id="category">
+                    <input id="srchFld" name="srchFld"class="srchTxt" placeholder="product name" type="text" style="width:28%">
+                    <select class="srchTxt"name="category" id="category" style="width:28%">
                         <option>All</option>
                         <option>CAMERAS </option>
                         <option>COMPUTER </option>
@@ -69,6 +69,8 @@
                         <option>SOUND &amp; VISION </option>
 
                     </select>
+                    <input id="slider1" name ="price"type="range" min="0" max="5000" step="200"style="width:20%"onchange="updateTextInput(this.value);"/>
+                    <span class ="btn btn-primary" id="rangeVal">0</span>
                     <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
                 </form>
                 <ul id="topMenu" class="nav pull-right">

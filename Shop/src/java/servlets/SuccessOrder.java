@@ -7,9 +7,12 @@ package servlets;
 
 import database.DataBaseHandler;
 import dto.Product;
+import dto.ShoppingCart;
+import dto.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,10 +22,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Ahmed labib
+ * @author Dina Ashraf
  */
-@WebServlet(name = "SearchProduct", urlPatterns = {"/SearchProduct"})
-public class SearchProduct extends HttpServlet {
+@WebServlet(name = "SuccessOrder", urlPatterns = {"/SuccessOrder"})
+public class SuccessOrder extends HttpServlet {
 
     DataBaseHandler dataBaseHandler;
 
@@ -46,31 +49,50 @@ public class SearchProduct extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String category = request.getParameter("category");
-            //System.out.println("asdasdas"+category);
-            String productName = request.getParameter("srchFld");
-            double productPrice = -1;
-            String price = request.getParameter("price");
-            if(price!=null)
-            {
-                productPrice = Double.parseDouble(price);
-                if(productPrice ==0)
-                    productPrice = -1;
-            }
-            if(category.equals("All")){
-                category="";
-            }
-            if(productName ==null)
-            {
-                productName = "";
-            }
-            ArrayList<Product> products = dataBaseHandler.
-                    searchProducts(category, productName, productPrice);
+            /* TODO output your page here. You may use following sample code. */
+            ////checkout
             HttpSession session = request.getSession(true);
-            session.setAttribute("products", products);
-            System.out.println("size from search "+products.size());            
-            response.sendRedirect("index.jsp?category="+request.getParameter("category")+
-                    "&name="+productName);
+            ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("cart");
+            User user = (User) session.getAttribute("user");
+            if (shoppingCart != null) {
+                //check avaliable quantity in database if it matches required
+                boolean allAvaliable = true;
+                for (Product product : shoppingCart.getProducts()) {
+                    int avaliable = dataBaseHandler.getProduct(product.getId()).getQuantity();
+                    if (product.getQuantity() > avaliable) {
+                        allAvaliable = false;
+                        break;
+                    }
+                }
+                // if order is still avaliable
+                if (allAvaliable) {
+                    System.out.println("avaliable!");
+                    ////create order and make status 1  (update order status)  
+                    dataBaseHandler.createOrder(user.getEmail(), shoppingCart.getProducts());
+                    dataBaseHandler.updateOrderStatus(user.getEmail(), 1);
+                    //// update products quantity
+                    for (Product product : shoppingCart.getProducts()) {
+                         Product updatedProduct = dataBaseHandler.getProduct(product.getId());
+                         updatedProduct.setQuantity(updatedProduct.getQuantity()-product.getQuantity());
+                        dataBaseHandler.editProduct(updatedProduct);
+                    }
+                    //// update user balance
+                    dataBaseHandler.updateUserBalance(user, (-1*shoppingCart.getTotalBill()));
+                    //update products in session!
+                    session.removeAttribute("products");
+                    //redirect to page with div that has this out successful order and back button!
+                    response.sendRedirect("successOrder.jsp");
+                }
+
+                //else
+                //// redirect to checkout servlet
+                else
+                {
+                    System.out.println("not avaliable!");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/checkout");
+                    dispatcher.forward(request, response);
+                }
+            }
         }
     }
 

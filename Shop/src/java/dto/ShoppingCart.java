@@ -6,7 +6,10 @@
 package dto;
 
 import database.DataBaseHandler;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import javax.swing.text.NumberFormatter;
 
 /**
  *
@@ -15,6 +18,8 @@ import java.util.ArrayList;
 public class ShoppingCart {
 
     ArrayList<Product> products = new ArrayList<>();
+    private double totalBill;
+    private boolean allAvaliable;
 
     /**
      * @return the products
@@ -22,16 +27,17 @@ public class ShoppingCart {
     public ArrayList<Product> getProducts() {
         return products;
     }
-    public int getQuantityOfProduct(int productID)
-    {
+
+    public int getQuantityOfProduct(int productID) {
         int quantity = 0;
         for (Product product : products) {
-           if (productID == product.getId()) {
-               quantity = product.getQuantity();
-           } 
+            if (productID == product.getId()) {
+                quantity = product.getQuantity();
+            }
         }
         return quantity;
     }
+
     public boolean addItem(Product product) {
         if (increaseQuantity(product.getId(), product.getQuantity())) {
             System.out.println("exists");
@@ -126,6 +132,34 @@ public class ShoppingCart {
     @Override
     public String toString() {
         return "ShoppingCart{" + "products=" + products + '}';
+    }
+
+    /**
+     * @return the totalBill
+     */
+    public double getTotalBill() {
+        return totalBill;
+    }
+
+    /**
+     * @param totalBill the totalBill to set
+     */
+    public void setTotalBill(double totalBill) {
+        this.totalBill = totalBill;
+    }
+
+    /**
+     * @return the allAvaliable
+     */
+    public boolean isAllAvaliable() {
+        return allAvaliable;
+    }
+
+    /**
+     * @param allAvaliable the allAvaliable to set
+     */
+    public void setAllAvaliable(boolean allAvaliable) {
+        this.allAvaliable = allAvaliable;
     }
 
 }
