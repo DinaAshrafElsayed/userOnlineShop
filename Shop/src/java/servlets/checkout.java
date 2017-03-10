@@ -94,6 +94,7 @@ public class checkout extends HttpServlet {
                     ////show recharge as in product summary if balance not enough that he needs to recharge
                     //// after the balance is enough 2 options check out or cancel
                 }
+                System.out.println(shoppingCart.getTotalBill());
                 session.setAttribute("cart", shoppingCart);
                 response.sendRedirect("checkout.jsp");
                 ////checkout

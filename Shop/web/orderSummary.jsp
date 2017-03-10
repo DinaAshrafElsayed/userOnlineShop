@@ -5,7 +5,7 @@
         <li><a href="index.jsp">Home</a> <span class="divider">/</span></li>
         <li class="active"> SHOPPING CART</li>
     </ul>
-    <h3>   Order [ <small> ${sessionScope.cart.getNumberOfItems()}</small>]<a href="products.html" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a></h3>	
+    <h3>   Order [ <small> ${sessionScope.cart.getNumberOfItems()}</small>]<a href="index.jsp" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a></h3>	
     <hr class="soft">
     <c:if test="${empty sessionScope.user}">
         <table class="table table-bordered">
@@ -85,7 +85,7 @@
             </tr>
         </tbody>
     </table>
-    <c:if test="${!empty sessionScope.user and sessionScope.user.getCreditCard().getBalance() < session.cart.getTotalBill()}" >
+    <c:if test="${sessionScope.user.getCreditCard().getBalance() < session.cart.getTotalBill()}" >
         <table class="table table-bordered">
             <tbody>
                 <tr>
@@ -97,7 +97,6 @@
                                     <input type="hidden" name="shoppingCart" value ="cart">
                                     <input type="number" class="input-medium" id="cardNumber2" name="cardNumber" placeholder="CODE" maxlength="8" >
                                     <button type="submit" class="btn" id="rechargeButton2"> ADD </button>
-                                    <div id="validationCard"></div>
                                 </div>
                             </div>
                         </form>
@@ -110,10 +109,10 @@
     <c:if test="${empty sessionScope.user}">
         <div class ="btn btn-danger btn-large pull-right"><i>you have to sign in to checkout</i></div>
     </c:if>
-    <c:if test="${!empty sessionScope.user}">
+    <c:if test="${!empty sessionScope.user and sessionScope.user.getCreditCard().getBalance() > sessionScope.cart.getTotalBill()}">
         <a href="#" class="btn btn-large btn-success pull-right">Confirm Order and BUY<i class="icon-arrow-right"></i></a>
         </c:if>
-        <c:if test="${!empty sessionScope.user and sessionScope.user.getCreditCard().getBalance() < session.cart.getTotalBill()}" >
+        <c:if test="${!empty sessionScope.user and sessionScope.user.getCreditCard().getBalance() < sessionScope.cart.getTotalBill()}" >
         <div class ="btn btn-danger btn-large pull-right"><i>you have to have enough Balance to Buy please Recharge</i></div>
     </c:if>
 </div>
