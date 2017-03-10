@@ -87,7 +87,8 @@ public class SuccessOrder extends HttpServlet {
                 //// redirect to checkout servlet
                 else
                 {
-                    response.sendRedirect("/checkout");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/checkout.jsp");
+                    dispatcher.forward(request, response);
                 }
             }
         }
