@@ -29,5 +29,8 @@
         } else
             document.getElementById("rechargeButton").disabled = true;
     }
-
+    function updateTextInput(val)
+    {
+        document.getElementById('rangeVal').innerHTML = val;
+    }
 </script>
