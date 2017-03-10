@@ -19,6 +19,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -121,40 +123,24 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
     // also delete images url then insert new images using product id
     @Override
     public boolean editProduct(Product product) {
-        try {
+        // beshoy edit start 
+                try {
             PreparedStatement preparedStatment = getConnection().prepareStatement("UPDATE products SET "
-                    + "productName=? ,price=? ,quantity=?, imageUrl=?, description=?,"
-                    + "discount=? ,categoryName=? WHERE product_id=?");
+                    + "productName=? ,price=? , description=?,"
+                    + "categoryName=? WHERE product_id=?");
             preparedStatment.setString(1, product.getProductName());
             preparedStatment.setDouble(2, product.getPrice());
-            preparedStatment.setInt(3, product.getQuantity());
-            preparedStatment.setString(4, product.getMainImageUrl());
-            preparedStatment.setString(5, product.getDescription());
-            preparedStatment.setDouble(6, product.getDiscount());
-            preparedStatment.setString(7, product.getCategoryName());
-            preparedStatment.setInt(8, product.getId());
-            if (preparedStatment.executeUpdate() > 0) {
-                PreparedStatement preparedStatment2 = getConnection().prepareStatement("delete from productimages "
-                        + "where products_product_id=?");
-                preparedStatment2.setInt(1, product.getId());
-                if (preparedStatment2.executeUpdate() > 0) {
-                    ArrayList<String> otherimages = product.getOtherImagesUrls().getImagesUrl();
-                    for (String imgUrl : otherimages) {
-                        preparedStatment2 = getConnection().prepareStatement("insert into "
-                                + "productImages (imageUrl,products_product_id)"
-                                + "values (?,?)");
-                        preparedStatment2.setString(1, imgUrl);
-                        preparedStatment2.setInt(2, product.getId());
-                        preparedStatment2.executeUpdate();
-                    }
-                    return true;
-                }
-            }
-            return false;
+            preparedStatment.setString(3, product.getDescription());
+            System.out.println(product.getDescription());
+            preparedStatment.setString(4, product.getCategoryName());
+            preparedStatment.setInt(5, product.getId());
+            preparedStatment.executeUpdate();
+            return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
             return false;
         }
+        // end beshoy edit 
     }
 
     @Override
@@ -773,7 +759,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             ResultSet resultset = preparedStatement.executeQuery();
             if (resultset.next()) {
                 String status = resultset.getString("status");
-                System.out.println("status is "+status);
+                System.out.println("status is " + status);
                 if (status.equals("1")) // recharge number found 
                 {
                     PreparedStatement preparedStatment2 = getConnection().prepareStatement("UPDATE rechargecards "
@@ -794,6 +780,53 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             return false;
         }
     }
-    //end of updates
 
+    //end of updates
+    @Override
+    public int editQuantity(int id, int quantity) {
+        int flag = 0;
+        try {
+            PreparedStatement st = getConnection().prepareCall("update products set quantity=? where product_id=?");
+            st.setInt(1, quantity);
+            st.setInt(2, id);
+            flag = st.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBaseHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return flag;
+    }
+
+    @Override
+    public boolean addRechargeCards(int number, int amount) {
+        PreparedStatement st;
+        System.out.println(number);
+        int[] cardNumber = new int[8];
+        for (int i = 1; i <= number; i++) {
+            for (int j = 0; j < 7; j++) {
+                cardNumber[j] = (new Random().nextInt(9) + 1);
+
+            }
+            String s = Arrays.toString(cardNumber);
+            StringBuilder builder = new StringBuilder();
+            for (int x : cardNumber) {
+                builder.append(x);
+
+            }
+            String text = builder.toString();
+            System.out.println(text);
+            try {
+                st = getConnection().prepareCall("insert into rechargecards(number,value,status) values(?,?,?)");
+
+                st.setInt(1, Integer.parseInt(text));
+                st.setInt(2, amount);
+                st.setString(3, "1");
+                st.executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(DataBaseHandler.class.getName()).log(Level.SEVERE, null, ex);
+                return false;
+            }
+
+        }
+        return true;
+    }
 }
