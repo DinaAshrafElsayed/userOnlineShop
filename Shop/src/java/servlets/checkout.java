@@ -33,11 +33,22 @@ public class checkout extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
            //check avaliable quantity in database if it matches required
-           //get save bill to see if he need to recharge
-           //make recharge doesnt get him out of page!
-           //
+           
+           //if yes
+           ////get total bill to see if he need to recharge
+           ////show recharge as in product summary if balance not enough that he needs to recharge
+           //// after the balance is enough 2 options check out or cancel
+           
+           ////checkout
+           ////create order and make status 1  (update order)         
+           ////cancel --> go back to index 
+           
+           //if quantity not enough show avaliable of each
+           ///then see if he agrees
+           ////show recharge as in product summary if balance not enough that he needs to recharge
+           //// after the balance is enough 2 options check out or cancel --> same as above
+           
         }
     }
 

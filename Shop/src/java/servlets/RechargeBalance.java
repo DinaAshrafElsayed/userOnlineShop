@@ -49,9 +49,9 @@ public class RechargeBalance extends HttpServlet {
             boolean isExist = databaseRef.CheckRechargeNumberExistance(Integer.parseInt(cardNumber));
             if (isExist) {
                 databaseRef.updateUserBalance(user, 100);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/ShoppingCart.jsp");
-                dispatcher.forward(request, response);
             }
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/ShoppingCart.jsp");
+            dispatcher.forward(request, response);
         }
     }
 //   }

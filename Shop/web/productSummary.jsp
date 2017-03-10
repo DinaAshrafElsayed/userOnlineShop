@@ -106,6 +106,6 @@
         <div class ="btn btn-danger btn-large pull-right"><i>you have to sign in to checkout</i></div>
             </c:if>
             <c:if test="${!empty sessionScope.user}">
-        <a href="checkout" class="btn btn-large pull-right">checkout <i class="icon-arrow-right"></i></a>
+        <a href="checkout" class="btn btn-large pull-right">next <i class="icon-arrow-right"></i></a>
         </c:if>
 </div>
