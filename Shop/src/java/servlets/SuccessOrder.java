@@ -11,6 +11,8 @@ import dto.ShoppingCart;
 import dto.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -75,6 +77,8 @@ public class SuccessOrder extends HttpServlet {
                     }
                     //// update user balance
                     dataBaseHandler.updateUserBalance(user, (-1*shoppingCart.getTotalBill()));
+                    //update products in session!
+                    session.removeAttribute("products");
                     //redirect to page with div that has this out successful order and back button!
                     response.sendRedirect("successOrder.jsp");
                 }
