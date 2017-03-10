@@ -66,6 +66,7 @@ public class SuccessOrder extends HttpServlet {
                 }
                 // if order is still avaliable
                 if (allAvaliable) {
+                    System.out.println("avaliable!");
                     ////create order and make status 1  (update order status)  
                     dataBaseHandler.createOrder(user.getEmail(), shoppingCart.getProducts());
                     dataBaseHandler.updateOrderStatus(user.getEmail(), 1);
@@ -87,7 +88,8 @@ public class SuccessOrder extends HttpServlet {
                 //// redirect to checkout servlet
                 else
                 {
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("/checkout.jsp");
+                    System.out.println("not avaliable!");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/checkout");
                     dispatcher.forward(request, response);
                 }
             }
