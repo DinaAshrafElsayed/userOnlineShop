@@ -104,7 +104,7 @@
             <url-pattern>/Shop/AddQuantity.jsp</url-pattern>
             <url-pattern>/Shop/AddRechargeCard.jsp</url-pattern>
             <url-pattern>/Shop/AdminIndex.jsp</url-pattern>
-            <url-pattern>/AllProduct.jsp</url-pattern>
+            <url-pattern>/Shop/AllProduct.jsp</url-pattern>
             <url-pattern>/Shop/CustomProduct.jsp</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
