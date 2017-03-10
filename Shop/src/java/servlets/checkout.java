@@ -5,7 +5,6 @@
  */
 package servlets;
 
-import database.DataBaseHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -16,10 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Samir
+ * @author Dina Ashraf
  */
-@WebServlet(name = "CheckCardNumberExistanceServlet", urlPatterns = {"/CheckCardNumberExistanceServlet"})
-public class CheckCardNumberExistanceServlet extends HttpServlet {
+@WebServlet(name = "checkout", urlPatterns = {"/checkout"})
+public class checkout extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,16 +31,13 @@ public class CheckCardNumberExistanceServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        String cardNumber = request.getParameter("cardNumber");
-        System.out.println("number "+cardNumber);
-        DataBaseHandler databaseRef = DataBaseHandler.getinstance();
-        System.out.println("in check recharge card number");
-        boolean isExist = databaseRef.CheckRechargeNumberExistance(Integer.parseInt(cardNumber));
-        if (isExist) {
-            out.print("Valid Card Number");
-        } else {
-            out.print("Not Valid Card Number");
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+           //check avaliable quantity in database if it matches required
+           //get save bill to see if he need to recharge
+           //make recharge doesnt get him out of page!
+           //
         }
     }
 

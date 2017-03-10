@@ -36,18 +36,27 @@ public class RechargeBalance extends HttpServlet {
             throws ServletException, IOException {
 
         String cardNumber = request.getParameter("cardNumber");
+        String cart = request.getParameter("shoppingCart");
         DataBaseHandler databaseRef = DataBaseHandler.getinstance();
         //boolean isExist = databaseRef.CheckRechargeNumberExistance(Integer.parseInt(cardNumber));
         //if (isExist) {
-            User user = (User) request.getSession().getAttribute("user");
+        User user = (User) request.getSession().getAttribute("user");
+        if (cart == null) {
             databaseRef.updateUserBalance(user, 100);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
             dispatcher.forward(request, response);
-        //}
-
+        } else {
+            boolean isExist = databaseRef.CheckRechargeNumberExistance(Integer.parseInt(cardNumber));
+            if (isExist) {
+                databaseRef.updateUserBalance(user, 100);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/ShoppingCart.jsp");
+                dispatcher.forward(request, response);
+            }
+        }
     }
+//   }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

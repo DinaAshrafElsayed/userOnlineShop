@@ -6,7 +6,10 @@
 package dto;
 
 import database.DataBaseHandler;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import javax.swing.text.NumberFormatter;
 
 /**
  *
