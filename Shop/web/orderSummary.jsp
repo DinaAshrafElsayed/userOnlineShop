@@ -105,13 +105,12 @@
             </tbody>
         </table>	
     </c:if>
-               
     <a href="index.jsp" class="btn btn-large"><i class="icon-arrow-left"></i> Continue Shopping </a>
     <c:if test="${empty sessionScope.user}">
         <div class ="btn btn-danger btn-large pull-right"><i>you have to sign in to checkout</i></div>
     </c:if>
     <c:if test="${!empty sessionScope.user and sessionScope.user.getCreditCard().getBalance() > sessionScope.cart.getTotalBill()}">
-        <a href="#" class="btn btn-large btn-success pull-right">Confirm Order and BUY<i class="icon-arrow-right"></i></a>
+        <a href="SuccessOrder" class="btn btn-large btn-success pull-right">Confirm Order and BUY<i class="icon-arrow-right"></i></a>
         </c:if>
         <c:if test="${!empty sessionScope.user and sessionScope.user.getCreditCard().getBalance() < sessionScope.cart.getTotalBill()}" >
         <div class ="btn btn-danger btn-large pull-right"><i>you have to have enough Balance to Buy please Recharge</i></div>

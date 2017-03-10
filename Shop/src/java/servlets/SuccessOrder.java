@@ -22,8 +22,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Dina Ashraf
  */
-@WebServlet(name = "checkout", urlPatterns = {"/checkout"})
-public class checkout extends HttpServlet {
+@WebServlet(name = "SuccessOrder", urlPatterns = {"/SuccessOrder"})
+public class SuccessOrder extends HttpServlet {
 
     DataBaseHandler dataBaseHandler;
 
@@ -47,7 +47,8 @@ public class checkout extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            //get shopping cart
+            /* TODO output your page here. You may use following sample code. */
+            ////checkout
             HttpSession session = request.getSession(true);
             ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("cart");
             User user = (User) session.getAttribute("user");
@@ -61,48 +62,30 @@ public class checkout extends HttpServlet {
                         break;
                     }
                 }
-                //if yes
+                // if order is still avaliable
                 if (allAvaliable) {
-                    shoppingCart.setAllAvaliable(true);
-                    ////get total bill to see if he need to recharge
-                    double total = shoppingCart.totalPriceWithDiscount();
-                    shoppingCart.setTotalBill(total);
-                    // all these steps in jsp we would use if as in product summary
-                    ////show recharge as in product summary if balance not enough that he needs to recharge
-                    //// after the balance is enough 2 options check out or cancel
-
-                } else if (!allAvaliable) {
-                    shoppingCart.setAllAvaliable(false);
-                    //if quantity not enough show avaliable of each
-                    // update the shopping cart
+                    ////create order and make status 1  (update order status)  
+                    dataBaseHandler.createOrder(user.getEmail(), shoppingCart.getProducts());
+                    dataBaseHandler.updateOrderStatus(user.getEmail(), 1);
+                    //// update products quantity
                     for (Product product : shoppingCart.getProducts()) {
-                        int avaliable = dataBaseHandler.getProduct(product.getId()).getQuantity();
-                        if (product.getQuantity() > avaliable) {
-                            // Supposedly should show that some of his ordered products wasnt avaliable as required
-                            // using allAvaliable attribute in shopping cart
-                            if (avaliable > 0) {
-                                product.setQuantity(avaliable);
-                            } else {
-                                shoppingCart.removeProduct(product.getId());
-                            }
-                        }
+                         Product updatedProduct = dataBaseHandler.getProduct(product.getId());
+                         updatedProduct.setQuantity(updatedProduct.getQuantity()-product.getQuantity());
+                        dataBaseHandler.editProduct(updatedProduct);
                     }
-                    ////get total bill to see if he need to recharge
-                    double total = shoppingCart.totalPriceWithDiscount();
-                    shoppingCart.setTotalBill(total);
-                    // all in jsp 
-                    ////show recharge as in product summary if balance not enough that he needs to recharge
-                    //// after the balance is enough 2 options check out or cancel
+                    //// update user balance
+                    dataBaseHandler.updateUserBalance(user, (-1*shoppingCart.getTotalBill()));
+                    //redirect to page with div that has this out successful order and back button!
+                    response.sendRedirect("successOrder.jsp");
                 }
-                System.out.println(shoppingCart.getTotalBill());
-                session.setAttribute("cart", shoppingCart);
-                response.sendRedirect("checkout.jsp");
-                ////checkout
-                ////create order and make status 1  (update order)   
-                //// update products quantity 
-                
-            }
 
+                //else
+                //// redirect to checkout servlet
+                else
+                {
+                    response.sendRedirect("/checkout");
+                }
+            }
         }
     }
 
