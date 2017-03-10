@@ -38,25 +38,35 @@ public class RechargeBalance extends HttpServlet {
 
         String cardNumber = request.getParameter("cardNumber");
         String cart = request.getParameter("shoppingCart");
+        String checkout = request.getParameter("checkout");
         DataBaseHandler databaseRef = DataBaseHandler.getinstance();
         //boolean isExist = databaseRef.CheckRechargeNumberExistance(Integer.parseInt(cardNumber));
         //if (isExist) {
         HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("user");
-        if (cart == null) {
+        if (cart == null && checkout == null) {
             databaseRef.updateUserBalance(user, 100);
-            user.getCreditCard().setBalance(databaseRef.getUserBalance(user.getEmail()));
+            //user.getCreditCard().setBalance(databaseRef.getUserBalance(user.getEmail()));
             session.setAttribute("user", user);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
             dispatcher.forward(request, response);
-        } else {
+        } else if (cart != null) {
             boolean isExist = databaseRef.CheckRechargeNumberExistance(Integer.parseInt(cardNumber));
             if (isExist) {
                 databaseRef.updateUserBalance(user, 100);
-                user.getCreditCard().setBalance(databaseRef.getUserBalance(user.getEmail()));
+        //        user.getCreditCard().setBalance(databaseRef.getUserBalance(user.getEmail()));
                 session.setAttribute("user", user);
             }
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ShoppingCart.jsp");
+            dispatcher.forward(request, response);
+        } else if (checkout != null) {
+            boolean isExist = databaseRef.CheckRechargeNumberExistance(Integer.parseInt(cardNumber));
+            if (isExist) {
+                databaseRef.updateUserBalance(user, 100);
+          //      user.getCreditCard().setBalance(databaseRef.getUserBalance(user.getEmail()));
+                session.setAttribute("user", user);
+            }
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/checkout.jsp");
             dispatcher.forward(request, response);
         }
     }
