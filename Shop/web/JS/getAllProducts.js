@@ -1,4 +1,5 @@
 $( document ).ready(function() {
+    $( "#slider1" ).val(0);
     $.get("GetAllProducts", callback);
 });
 function getAllProducts() {

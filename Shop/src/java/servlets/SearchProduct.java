@@ -54,6 +54,8 @@ public class SearchProduct extends HttpServlet {
             if(price!=null)
             {
                 productPrice = Double.parseDouble(price);
+                if(productPrice ==0)
+                    productPrice = -1;
             }
             if(category.equals("All")){
                 category="";
