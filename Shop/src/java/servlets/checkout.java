@@ -11,6 +11,7 @@ import dto.ShoppingCart;
 import dto.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -75,6 +76,8 @@ public class checkout extends HttpServlet {
                     shoppingCart.setAllAvaliable(false);
                     //if quantity not enough show avaliable of each
                     // update the shopping cart
+                    ArrayList<Product> productsToBeRemoved = new ArrayList<Product>();
+                    System.out.println(shoppingCart.getProducts());
                     for (Product product : shoppingCart.getProducts()) {
                         int avaliable = dataBaseHandler.getProduct(product.getId()).getQuantity();
                         if (product.getQuantity() > avaliable) {
@@ -83,9 +86,12 @@ public class checkout extends HttpServlet {
                             if (avaliable > 0) {
                                 product.setQuantity(avaliable);
                             } else {
-                                shoppingCart.removeProduct(product.getId());
+                                productsToBeRemoved.add(product);
                             }
                         }
+                    }
+                    for (Product product : productsToBeRemoved) {
+                        shoppingCart.removeProduct(product.getId());
                     }
                     ////get total bill to see if he need to recharge
                     double total = shoppingCart.totalPriceWithDiscount();

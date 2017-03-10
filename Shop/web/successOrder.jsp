@@ -9,7 +9,7 @@
         </style>
     </head>
     <body>
-        <jsp:include page ='headerVisitor.jsp'/>
+        <jsp:include page ='headeruser.jsp'/>
         <!-- Header End====================================================================== -->
         <div id="mainBody">
             <div class="container">
