@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -40,15 +41,20 @@ public class RechargeBalance extends HttpServlet {
         DataBaseHandler databaseRef = DataBaseHandler.getinstance();
         //boolean isExist = databaseRef.CheckRechargeNumberExistance(Integer.parseInt(cardNumber));
         //if (isExist) {
-        User user = (User) request.getSession().getAttribute("user");
+        HttpSession session = request.getSession(true);
+        User user = (User) session.getAttribute("user");
         if (cart == null) {
             databaseRef.updateUserBalance(user, 100);
+            user.getCreditCard().setBalance(databaseRef.getUserBalance(user.getEmail()));
+            session.setAttribute("user", user);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
             dispatcher.forward(request, response);
         } else {
             boolean isExist = databaseRef.CheckRechargeNumberExistance(Integer.parseInt(cardNumber));
             if (isExist) {
                 databaseRef.updateUserBalance(user, 100);
+                user.getCreditCard().setBalance(databaseRef.getUserBalance(user.getEmail()));
+                session.setAttribute("user", user);
             }
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ShoppingCart.jsp");
             dispatcher.forward(request, response);
