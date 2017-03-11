@@ -11,7 +11,8 @@ import java.io.Serializable;
  *
  * @author Dina Ashraf
  */
-public class Product implements Serializable{
+public class Product implements Serializable {
+
     private String productName;
     private String mainImageUrl;
     private ImagesUrl otherImagesUrls;
@@ -21,6 +22,7 @@ public class Product implements Serializable{
     private double discount;
     private String categoryName;
     private int id;
+
     public Product(String productName, String mainImageUrl, ImagesUrl otherImagesUrls, int quantity, double price, String description, double discount, String categoryName) {
         this.productName = productName;
         this.mainImageUrl = mainImageUrl;
@@ -44,8 +46,15 @@ public class Product implements Serializable{
         this.id = id;
     }
 
-   
-    
+    public Product(String name, int id, double price, String desc, String cat) {
+        this.productName = name;
+        this.price = price;
+        this.categoryName = cat;
+        this.id = id;
+        this.description = desc;
+
+    }
+
     /**
      * @return the productName
      */
@@ -177,6 +186,6 @@ public class Product implements Serializable{
         return "Product{" + "productName=" + productName + ", mainImageUrl=" + mainImageUrl + ", otherImagesUrls=" + otherImagesUrls + ", quantity=" + quantity + ", price=" + price + ", description=" + description + ", discount=" + discount + ", categoryName=" + categoryName + ", id=" + id + '}';
     }
     // updates
-    
+
     //end of updates
 }
