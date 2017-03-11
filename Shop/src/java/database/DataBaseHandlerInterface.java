@@ -7,6 +7,7 @@ package database;
 
 import dto.Orders;
 import dto.Product;
+import dto.ShoppingCart;
 import dto.User;
 import java.util.ArrayList;
 
@@ -43,6 +44,6 @@ public interface DataBaseHandlerInterface
     //end of updates 
     
     // dina update
-    
+    public ShoppingCart getUnboughtOrder(String email);
     // end dina update
 }

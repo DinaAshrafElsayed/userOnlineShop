@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-	 version="3.1">
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <listener>
+        <description>HttpSessionListener</description>
+        <listener-class>sessionhandler.SessionHandler</listener-class>
+    </listener>
     <servlet>
         <servlet-name>servletAddProduct</servlet-name>
         <servlet-class>adminservlet.servletAddProduct</servlet-class>
     </servlet>
-
     <servlet>
         <servlet-name>servletAddQunatity</servlet-name>
         <servlet-class>adminservlet.servletAddQunatity</servlet-class>
     </servlet>
-
-
     <servlet>
         <servlet-name>servletUpdateProduct</servlet-name>
         <servlet-class>adminservlet.servletUpdateProduct</servlet-class>
@@ -23,17 +20,14 @@
         <servlet-name>servletShowUserProfile</servlet-name>
         <servlet-class>adminservlet.servletShowUserProfile</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>servletAddProduct</servlet-name>
         <url-pattern>/servletAddProduct</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>servletAddQunatity</servlet-name>
         <url-pattern>/servletAddQunatity</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>servletUpdateProduct</servlet-name>
         <url-pattern>/servletUpdateProduct</url-pattern>
@@ -59,16 +53,14 @@
         <exception-type>java.lang.Throwable</exception-type>
         <location>/ErrorPage2.html</location>
     </error-page>
-    <security-constraint>        
+    <security-constraint>
         <web-resource-collection>
             <web-resource-name>Admin</web-resource-name>
-
             <url-pattern>/Shop/AddQuantity.jsp</url-pattern>
             <url-pattern>/Shop/AddRechargeCard.jsp</url-pattern>
             <url-pattern>/Shop/AdminIndex.jsp</url-pattern>
             <url-pattern>/Shop/AllProduct.jsp</url-pattern>
             <url-pattern>/Shop/CustomProduct.jsp</url-pattern>
-
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>
@@ -89,5 +81,4 @@
             <form-error-page>/ErrorPage3.html</form-error-page>
         </form-login-config>
     </login-config>
-    
 </web-app>

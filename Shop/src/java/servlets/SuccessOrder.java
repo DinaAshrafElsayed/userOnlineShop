@@ -80,6 +80,7 @@ public class SuccessOrder extends HttpServlet {
                     dataBaseHandler.updateUserBalance(user, (-1*shoppingCart.getTotalBill()));
                     //update products in session!
                     session.removeAttribute("products");
+                    session.removeAttribute("cart");
                     //redirect to page with div that has this out successful order and back button!
                     response.sendRedirect("successOrder.jsp");
                 }

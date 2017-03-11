@@ -6,6 +6,7 @@
 package servlets;
 
 import database.DataBaseHandler;
+import dto.ShoppingCart;
 import dto.User;
 import java.io.IOException;
 import java.sql.Connection;
@@ -64,6 +65,12 @@ public class Login extends HttpServlet {
             HttpSession session = request.getSession(true);
             session.setAttribute("user", user);
             System.out.println("session created");
+            ShoppingCart unboughtCart = instance.getUnboughtOrder(username);
+            System.out.println("number of unbought cart"+unboughtCart.getNumberOfItems());
+            if (unboughtCart.getNumberOfItems() > 0) {
+                session.setAttribute("cart", unboughtCart);
+                instance.DeleteOrder(username);
+            }
             if (cart == null) {
                 response.sendRedirect("index.jsp");
             } else {
@@ -75,8 +82,7 @@ public class Login extends HttpServlet {
             if (cart == null) {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
                 dispatcher.forward(request, response);
-            }
-            else {
+            } else {
                 response.sendRedirect("ShoppingCart.jsp");
             }
         }

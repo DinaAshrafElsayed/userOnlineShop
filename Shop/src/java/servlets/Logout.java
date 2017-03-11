@@ -1,5 +1,8 @@
 package servlets;
 
+import database.DataBaseHandler;
+import dto.ShoppingCart;
+import dto.User;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,6 +27,14 @@ public class Logout extends HttpServlet {
                 response.addCookie(cooky);
                 System.out.println("cookie deleted");
                 break;
+            }
+        }
+        User user=(User) request.getSession(false).getAttribute("user");
+        ShoppingCart cart=(ShoppingCart) request.getSession(false).getAttribute("cart");
+        if(user!= null && cart!=null){
+            if(cart.getNumberOfItems()>0){
+                DataBaseHandler dataBaseHandler=DataBaseHandler.getinstance();
+                dataBaseHandler.createOrder(user.getEmail(), cart.getProducts());
             }
         }
         session.removeAttribute("user");
