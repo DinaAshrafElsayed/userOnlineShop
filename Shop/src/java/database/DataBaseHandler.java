@@ -886,8 +886,4 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             return null;
         }
     }
-    public static void main(String[] args) {
-        
-        System.out.println(new DataBaseHandler().getRechargeNumberValue(12345678));
-    }
 }
