@@ -1,7 +1,7 @@
 <%@page import="java.sql.ResultSet"%>
-<%@include file="AdminHead.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="AdminHead.jsp" %>
 <%@include file="AdminUp.jsp" %>
 <table class="table table-hover">
     <tr>
@@ -31,15 +31,4 @@
         </tr>
     </c:forEach>  
 </table>
-<br><br>
-<div class="form-group">
-    <div class="alert alert-success alert-dismissable" id="done">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <h4>
-            done!
-        </h4>  your product has been deleted . <a href="#" class="alert-link"></a>
-    </div>
-
-
-</div>
 <%@include  file="AdminDown.jsp" %>

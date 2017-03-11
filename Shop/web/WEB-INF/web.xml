@@ -59,15 +59,16 @@
         <exception-type>java.lang.Throwable</exception-type>
         <location>/ErrorPage2.html</location>
     </error-page>
-    <security-constraint>
-        
+    <security-constraint>        
         <web-resource-collection>
             <web-resource-name>Admin</web-resource-name>
+
             <url-pattern>/Shop/AddQuantity.jsp</url-pattern>
             <url-pattern>/Shop/AddRechargeCard.jsp</url-pattern>
             <url-pattern>/Shop/AdminIndex.jsp</url-pattern>
             <url-pattern>/Shop/AllProduct.jsp</url-pattern>
             <url-pattern>/Shop/CustomProduct.jsp</url-pattern>
+
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>

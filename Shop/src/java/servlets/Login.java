@@ -71,6 +71,7 @@ public class Login extends HttpServlet {
             }
         } else {
             System.out.println("user not found ");
+            request.setAttribute("invalid", "yes");
             if (cart == null) {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
                 dispatcher.forward(request, response);

@@ -15,12 +15,25 @@
         <script src="JS/jquery.js"></script>
         <script src="JS/getAllProducts.js"></script>
         <script src="JS/addToShoppingCart.js"></script>
+        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+        <script>
+            document.getElementById("success").style.display = "none";
+        </script>
     </head>
     <body>
         <!-- beshoy edit -->
-        
+        <div class="w3-panel w3-blue" style="display: none;" id="success">
+            <span class="w3-closebtn" onclick="this.parentElement.style.display = 'none'">X</span>
+            <p>Invalid username or password</p>
+        </div>
+        <c:if test="${!empty requestScope.invalid}">
+            <script>
+                document.getElementById("success").style.display = "block";
+            </script>
+           <c:remove var="invalid" scope="request"/>
+        </c:if>
         <!-- beshoy edit end -->
-        
+
         <c:if test="${!empty sessionScope.user}">
             <jsp:include page ='headeruser.jsp'/>
         </c:if> 
@@ -48,13 +61,13 @@
         </c:if>
         <c:if test="${!empty param.name or !empty param.category}">
             <c:if test="${!empty param.name and !empty param.category}">
-                <script>loadSearchField("${param.category}","${param.name}")</script>
+                <script>loadSearchField("${param.category}", "${param.name}")</script>
             </c:if>
             <c:if test="${!empty param.name and empty param.category}">
-                <script>loadSearchField("All","${param.name}")</script>
+                <script>loadSearchField("All", "${param.name}")</script>
             </c:if>
             <c:if test="${empty param.name and !empty param.category}">
-                <script>loadSearchField("${param.category}","")</script>
+                <script>loadSearchField("${param.category}", "")</script>
             </c:if>
         </c:if>
     </body>

@@ -71,7 +71,7 @@ public class servletAddProduct extends HttpServlet {
                     try {
                         String itemName = item.getName();
                         System.out.println(itemName);
-                        String path = getServletContext().getRealPath("") + File.separator + "uploads" + File.separator + "product" + File.separator;
+                        String path = System.getProperty("user.home") + File.separator + "Documents"+File.separator;
 
                         File savedFile = new File(path + itemName);
                         item.write(savedFile);
