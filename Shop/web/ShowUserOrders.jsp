@@ -29,9 +29,9 @@
                 <td><c:out value="${product.quantity}"/></td>
                 <td><c:out value="${product.discount}"/></td>
                 <td><c:out value="${product.categoryName}"/></td>
-            </c:forEach>
-        </tr>
-    </c:forEach>
+        </c:forEach>
+    </tr>
+</c:forEach>
 
 </table>
 <form action="UsersHasOrders" method="POST">
