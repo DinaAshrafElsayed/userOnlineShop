@@ -1,4 +1,3 @@
-<%@ page session="false" %>
 <%@include file="AdminHead.jsp" %>
 <%@include file="AdminUp.jsp" %>
 <div class="w3-display-container w3-hover-opacity w3-animate-zoom">
