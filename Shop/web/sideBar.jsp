@@ -14,7 +14,7 @@
             </div><!--<span class="badge badge-warning pull-right" id="cartPrice">$155.00</span>--></a>
     </div>
     <ul id="sideManu" class="nav nav-tabs nav-stacked">
-        <form class="subMenu open" method="post" action="SearchProduct"><a> ELECTRONICS</a>
+        <form class="subMenu open" method="post" action="SearchProduct"><a href="SearchProduct?category=All"> ELECTRONICS</a>
             <ul>
                 <li><a class="active" href="SearchProduct?category=CAMERAS"><i class="icon-chevron-right"></i>Cameras</a></li>
                 <li><a href="SearchProduct?category=COMPUTER"><i class="icon-chevron-right"></i>Computers</a></li>

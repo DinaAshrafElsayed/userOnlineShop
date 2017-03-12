@@ -5,6 +5,7 @@
         <group>
             <file>file:/E:/jsp%20project%20final%20version/userOnlineShop/Shop/web/checkout.jsp</file>
             <file>file:/E:/jsp%20project%20final%20version/userOnlineShop/Shop/src/java/dto/ShoppingCart.java</file>
+            <file>file:/E:/jsp%20project%20final%20version/userOnlineShop/Shop/src/java/servlets/Logout.java</file>
             <file>file:/E:/jsp%20project%20final%20version/userOnlineShop/Shop/web/successOrder.jsp</file>
             <file>file:/E:/jsp%20project%20final%20version/userOnlineShop/Shop/src/java/servlets/checkout.java</file>
             <file>file:/E:/jsp%20project%20final%20version/userOnlineShop/Shop/web/orderSummary.jsp</file>
