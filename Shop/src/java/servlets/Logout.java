@@ -38,6 +38,7 @@ public class Logout extends HttpServlet {
             }
         }
         session.removeAttribute("user");
+        session.invalidate();
         System.out.println("user deleted");
         //request.getRequestDispatcher("index.jsp").forward(request, response);
         response.sendRedirect("index.jsp");
