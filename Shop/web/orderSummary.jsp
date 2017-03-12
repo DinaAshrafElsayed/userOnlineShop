@@ -109,10 +109,14 @@
     <c:if test="${empty sessionScope.user}">
         <div class ="btn btn-danger btn-large pull-right"><i>you have to sign in to checkout</i></div>
     </c:if>
-    <c:if test="${!empty sessionScope.user and sessionScope.user.getCreditCard().getBalance() > sessionScope.cart.getTotalBill()}">
+    <c:if test="${!empty sessionScope.user and sessionScope.user.getCreditCard().getBalance() > sessionScope.cart.getTotalBill() and sessionScope.cart.getNumberOfItems() > 0}">
         <a href="SuccessOrder" class="btn btn-large btn-success pull-right">Confirm Order and BUY<i class="icon-arrow-right"></i></a>
         </c:if>
-        <c:if test="${!empty sessionScope.user and sessionScope.user.getCreditCard().getBalance() < sessionScope.cart.getTotalBill()}" >
+        <c:if test="${!empty sessionScope.user and sessionScope.user.getCreditCard().getBalance() < sessionScope.cart.getTotalBill() and sessionScope.cart.getNumberOfItems() > 0}" >
         <div class ="btn btn-danger btn-large pull-right"><i>you have to have enough Balance to Buy please Recharge</i></div>
     </c:if>
+        <c:if test="${ sessionScope.cart.getNumberOfItems() <= 0 }">
+                <div class ="btn btn-danger btn-large pull-right"><i>can't check out with any empty cart</i>
+                </div>
+        </c:if>
 </div>
