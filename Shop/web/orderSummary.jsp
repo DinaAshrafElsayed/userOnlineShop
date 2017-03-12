@@ -95,7 +95,7 @@
                                 <label class="control-label"><strong> Recharge CODE: </strong> </label>
                                 <div class="controls">
                                     <input type="hidden" name="checkout" value ="cart">
-                                    <input type="number" class="input-medium" id="cardNumber2" name="cardNumber" placeholder="CODE" maxlength="8" >
+                                    <input type="number" class="input-medium" id="cardNumber2" name="cardNumber" placeholder="CODE" min="1" max="99999999" >
                                     <button type="submit" class="btn" id="rechargeButton2"> ADD </button>
                                 </div>
                             </div>
