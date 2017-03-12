@@ -142,7 +142,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
         }
         // end beshoy edit 
     }
-
+    
     @Override
     public boolean removeProduct(Product product) {
         try {

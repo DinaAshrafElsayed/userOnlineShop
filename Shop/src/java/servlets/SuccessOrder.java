@@ -74,7 +74,7 @@ public class SuccessOrder extends HttpServlet {
                     for (Product product : shoppingCart.getProducts()) {
                          Product updatedProduct = dataBaseHandler.getProduct(product.getId());
                          updatedProduct.setQuantity(updatedProduct.getQuantity()-product.getQuantity());
-                        dataBaseHandler.editProduct(updatedProduct);
+                        dataBaseHandler.editQuantity(updatedProduct.getId(),updatedProduct.getQuantity());
                     }
                     //// update user balance
                     dataBaseHandler.updateUserBalance(user, (-1*shoppingCart.getTotalBill()));
