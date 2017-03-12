@@ -41,11 +41,12 @@ public class RechargeBalance extends HttpServlet {
         String checkout = request.getParameter("checkout");
         DataBaseHandler databaseRef = DataBaseHandler.getinstance();
         //boolean isExist = databaseRef.CheckRechargeNumberExistance(Integer.parseInt(cardNumber));
+        int rechargeCardValue = databaseRef.getRechargeNumberValue(Integer.parseInt(cardNumber));
         //if (isExist) {
         HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("user");
         if (cart == null && checkout == null) {
-            databaseRef.updateUserBalance(user, 100);
+            databaseRef.updateUserBalance(user, rechargeCardValue);
             //user.getCreditCard().setBalance(databaseRef.getUserBalance(user.getEmail()));
             session.setAttribute("user", user);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
@@ -53,7 +54,7 @@ public class RechargeBalance extends HttpServlet {
         } else if (cart != null) {
             boolean isExist = databaseRef.CheckRechargeNumberExistance(Integer.parseInt(cardNumber));
             if (isExist) {
-                databaseRef.updateUserBalance(user, 100);
+                databaseRef.updateUserBalance(user, rechargeCardValue);
         //        user.getCreditCard().setBalance(databaseRef.getUserBalance(user.getEmail()));
                 session.setAttribute("user", user);
             }
@@ -62,7 +63,7 @@ public class RechargeBalance extends HttpServlet {
         } else if (checkout != null) {
             boolean isExist = databaseRef.CheckRechargeNumberExistance(Integer.parseInt(cardNumber));
             if (isExist) {
-                databaseRef.updateUserBalance(user, 100);
+                databaseRef.updateUserBalance(user, rechargeCardValue);
           //      user.getCreditCard().setBalance(databaseRef.getUserBalance(user.getEmail()));
                 session.setAttribute("user", user);
             }

@@ -790,6 +790,22 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             return false;
         }
     }
+    
+    public int getRechargeNumberValue(int cardNumber){
+        try {
+            PreparedStatement getCardNumberValuePST = getConnection().prepareStatement("select value from rechargecards where number =?");
+            getCardNumberValuePST.setInt(1, cardNumber);
+            ResultSet resultset = getCardNumberValuePST.executeQuery();
+            if(resultset.next()){
+                return resultset.getInt("value");
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error while try to get card number value");
+            ex.printStackTrace();
+            return 0;
+        }
+        return 0;
+    }
 
     //end of updates
     @Override
@@ -869,5 +885,9 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             ex.printStackTrace();
             return null;
         }
+    }
+    public static void main(String[] args) {
+        
+        System.out.println(new DataBaseHandler().getRechargeNumberValue(12345678));
     }
 }
