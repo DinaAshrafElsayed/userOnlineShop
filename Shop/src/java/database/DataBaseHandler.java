@@ -595,18 +595,21 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
     @Override
     public boolean DeleteOrder(String email) {
         try {
+            System.out.println("inside delete order");
             PreparedStatement preparedStatement = getConnection().
-                    prepareStatement("select id from order where status=0 and User_email=?");
+                    prepareStatement("select id from orders where status=0 and User_email=?");
             preparedStatement.setString(1, email);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 int orderID = resultSet.getInt("id");
-                preparedStatement.getConnection().prepareStatement("delete from orderdetails where order_id=?");
-                preparedStatement.setInt(1, orderID);
-                if (preparedStatement.executeUpdate() > 0) {
-                    preparedStatement.getConnection().prepareStatement("delete from order where id=?");
-                    preparedStatement.setInt(1, orderID);
-                    if (preparedStatement.executeUpdate() > 0) {
+                PreparedStatement preparedStatement2 = preparedStatement.getConnection().prepareStatement("delete from orderdetails where order_id=?");
+                preparedStatement2.setInt(1, orderID);
+                if (preparedStatement2.executeUpdate() > 0) {
+                    PreparedStatement preparedStatement3 = preparedStatement.getConnection().prepareStatement("delete from orders where id=?");
+                    preparedStatement3.setInt(1, orderID);
+                    System.out.println("id is "+orderID);
+                    if (preparedStatement3.executeUpdate() > 0) {
+                        System.out.println("executing the last delete");
                         return true;
                     }
                 }
