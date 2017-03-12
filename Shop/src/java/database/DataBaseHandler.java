@@ -707,21 +707,28 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
     // updates
     @Override
     public ArrayList<Orders> GetUserOrders(String email) {
-        try {
-            PreparedStatement preparedStatement1 = getConnection().prepareStatement("SELECT products_product_id FROM orderdetails");
-            ResultSet resultset1 = preparedStatement1.executeQuery();
-            ArrayList<Product> productList = new ArrayList<>();
-            while (resultset1.next()) {
-                int productID = resultset1.getInt("products_product_id");
-                Product product = getProduct(productID);
-                productList.add(product);
-            }
+               try {
             PreparedStatement preparedStatement2 = getConnection().prepareStatement("SELECT * FROM orders WHERE User_email=?");
             preparedStatement2.setString(1, email);
             ResultSet resultset2 = preparedStatement2.executeQuery();
             ArrayList<Orders> userOrdersList = new ArrayList<>();
             while (resultset2.next()) {
-                Orders order = new Orders(email, resultset2.getString("date"), productList);
+                //Orders order = new Orders();
+                String date = resultset2.getString("date");
+                //order.setDate();
+                //order.setUserEmail(email);
+                int id=resultset2.getInt("id");
+                PreparedStatement preparedStatement1 = getConnection().prepareStatement("SELECT products_product_id FROM orderdetails where order_id=?");
+                preparedStatement1.setInt(1,id);
+                ResultSet resultset1 = preparedStatement1.executeQuery();
+                ArrayList<Product> productList = new ArrayList<>();
+                while (resultset1.next()) {
+                    int productID = resultset1.getInt("products_product_id");
+                    Product product = getProduct(productID);
+                    productList.add(product);
+                }
+                Orders order = new Orders(email, date, productList);
+                //order.setOrderedProducts(productList);
                 userOrdersList.add(order);
             }
             return userOrdersList;

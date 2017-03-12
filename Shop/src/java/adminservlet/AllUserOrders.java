@@ -28,6 +28,7 @@ public class AllUserOrders extends HttpServlet {
         String user_id = request.getParameter("id");
         DataBaseHandler databaseRef = DataBaseHandler.getinstance();
         ArrayList<Orders> userOrdersList = databaseRef.GetUserOrders(user_id);
+        System.out.println(userOrdersList.get(userOrdersList.size()-1).getOrderedProducts());
         request.setAttribute("userOrdersList", userOrdersList);
         RequestDispatcher dispatcher = request
                 .getRequestDispatcher("ShowUserOrders.jsp");
