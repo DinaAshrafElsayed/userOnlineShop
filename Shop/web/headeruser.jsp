@@ -58,7 +58,7 @@
                 <span class="icon-bar"></span>
             </a>
             <div class="navbar-inner">
-                <a class="brand" href="index.jsp"><img src="themes/images/logo.png" alt="electricShop"></a>
+                <a class="brand" href="SearchProduct?category=All"><img src="themes/images/logo.png" alt="electricShop"></a>
                 <form class="form-inline navbar-search" method="post" action="SearchProduct">
                     <input id="srchFld" name="srchFld"class="srchTxt" placeholder="product name" type="text" style="width:28%">
                     <select class="srchTxt"name="category" id="category" style="width:28%">

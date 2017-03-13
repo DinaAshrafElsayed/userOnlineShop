@@ -52,6 +52,14 @@ and open the template in the editor.
                                 <td>Credit Card</td>
                                 <td><c:out value="${userprofile.creditCard.creditCardNumber}"/></td>
                             </tr>
+                            <tr>
+                                <td>Expire Date</td>
+                                <td><c:out value="${userprofile.creditCard.expireDate}"/></td>
+                            </tr>
+                            <tr>
+                                <td>Balance of Credit Card</td>
+                                <td><c:out value="${userprofile.creditCard.balance}"/></td>
+                            </tr>
                         <td>Phone Number</td>
                         <td><c:out value="${userprofile.getPhone()}"/></td>
                         </tbody>

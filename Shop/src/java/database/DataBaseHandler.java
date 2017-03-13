@@ -9,6 +9,7 @@ import dto.CreditCard;
 import dto.ImagesUrl;
 import dto.Orders;
 import dto.Product;
+import dto.ShoppingCart;
 import dto.User;
 import java.sql.Connection;
 import java.sql.Date;
@@ -124,7 +125,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
     @Override
     public boolean editProduct(Product product) {
         // beshoy edit start 
-                try {
+        try {
             PreparedStatement preparedStatment = getConnection().prepareStatement("UPDATE products SET "
                     + "productName=? ,price=? , description=?,"
                     + "categoryName=? WHERE product_id=?");
@@ -142,7 +143,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
         }
         // end beshoy edit 
     }
-    
+
     @Override
     public boolean removeProduct(Product product) {
         try {
@@ -594,18 +595,21 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
     @Override
     public boolean DeleteOrder(String email) {
         try {
+            System.out.println("inside delete order");
             PreparedStatement preparedStatement = getConnection().
-                    prepareStatement("select id from order where status=0 and User_email=?");
+                    prepareStatement("select id from orders where status=0 and User_email=?");
             preparedStatement.setString(1, email);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 int orderID = resultSet.getInt("id");
-                preparedStatement.getConnection().prepareStatement("delete from orderdetails where order_id=?");
-                preparedStatement.setInt(1, orderID);
-                if (preparedStatement.executeUpdate() > 0) {
-                    preparedStatement.getConnection().prepareStatement("delete from order where id=?");
-                    preparedStatement.setInt(1, orderID);
-                    if (preparedStatement.executeUpdate() > 0) {
+                PreparedStatement preparedStatement2 = preparedStatement.getConnection().prepareStatement("delete from orderdetails where order_id=?");
+                preparedStatement2.setInt(1, orderID);
+                if (preparedStatement2.executeUpdate() > 0) {
+                    PreparedStatement preparedStatement3 = preparedStatement.getConnection().prepareStatement("delete from orders where id=?");
+                    preparedStatement3.setInt(1, orderID);
+                    System.out.println("id is "+orderID);
+                    if (preparedStatement3.executeUpdate() > 0) {
+                        System.out.println("executing the last delete");
                         return true;
                     }
                 }
@@ -707,7 +711,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
     // updates
     @Override
     public ArrayList<Orders> GetUserOrders(String email) {
-               try {
+        try {
             PreparedStatement preparedStatement2 = getConnection().prepareStatement("SELECT * FROM orders WHERE User_email=?");
             preparedStatement2.setString(1, email);
             ResultSet resultset2 = preparedStatement2.executeQuery();
@@ -717,14 +721,16 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
                 String date = resultset2.getString("date");
                 //order.setDate();
                 //order.setUserEmail(email);
-                int id=resultset2.getInt("id");
-                PreparedStatement preparedStatement1 = getConnection().prepareStatement("SELECT products_product_id FROM orderdetails where order_id=?");
-                preparedStatement1.setInt(1,id);
+                int id = resultset2.getInt("id");
+                PreparedStatement preparedStatement1 = getConnection().prepareStatement("SELECT * FROM orderdetails where order_id=?");
+                preparedStatement1.setInt(1, id);
                 ResultSet resultset1 = preparedStatement1.executeQuery();
                 ArrayList<Product> productList = new ArrayList<>();
                 while (resultset1.next()) {
                     int productID = resultset1.getInt("products_product_id");
                     Product product = getProduct(productID);
+                    product.setQuantity(resultset1.getInt("quantity"));
+                    product.setPrice(resultset1.getDouble("price"));
                     productList.add(product);
                 }
                 Orders order = new Orders(email, date, productList);
@@ -787,6 +793,22 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             return false;
         }
     }
+    
+    public int getRechargeNumberValue(int cardNumber){
+        try {
+            PreparedStatement getCardNumberValuePST = getConnection().prepareStatement("select value from rechargecards where number =?");
+            getCardNumberValuePST.setInt(1, cardNumber);
+            ResultSet resultset = getCardNumberValuePST.executeQuery();
+            if(resultset.next()){
+                return resultset.getInt("value");
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error while try to get card number value");
+            ex.printStackTrace();
+            return 0;
+        }
+        return 0;
+    }
 
     //end of updates
     @Override
@@ -835,5 +857,36 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
 
         }
         return true;
+    }
+
+    @Override
+    public ShoppingCart getUnboughtOrder(String email) {
+        try {
+            PreparedStatement preparedStatement2 = getConnection().prepareStatement("SELECT * FROM"
+                    + " orders WHERE User_email=? and status=0");
+            preparedStatement2.setString(1, email);
+            ResultSet resultset2 = preparedStatement2.executeQuery();
+            ShoppingCart unboughtCart = new ShoppingCart();
+            if (resultset2.next()) {
+                System.out.println("insdie db unbougt cart");
+                int id = resultset2.getInt("id");
+                System.out.println("id "+id);
+                PreparedStatement preparedStatement1 = getConnection().prepareStatement("SELECT * FROM orderdetails where order_id=?");
+                preparedStatement1.setInt(1, id);
+                ResultSet resultset1 = preparedStatement1.executeQuery();
+                while (resultset1.next()) {
+                    System.out.println("inside nect fun");
+                    int productID = resultset1.getInt("products_product_id");
+                    Product product = getProduct(productID);
+                    product.setQuantity(resultset1.getInt("quantity"));
+                    product.setPrice(resultset1.getDouble("price"));
+                    unboughtCart.addItem(product);
+                }
+            }
+            return unboughtCart;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
 }

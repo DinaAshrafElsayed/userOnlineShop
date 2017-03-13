@@ -14,12 +14,12 @@ import java.time.LocalDate;
 public class CreditCard {
     private long creditCardNumber;
     private LocalDate expireDate;
-    private double Balance;
+    private double balance;
 
     public CreditCard(long creditCardNumber, LocalDate expireDate, double Balance) {
         this.creditCardNumber = creditCardNumber;
         this.expireDate = expireDate;
-        this.Balance = Balance;
+        this.balance = Balance;
     }
 
     /**
@@ -51,17 +51,17 @@ public class CreditCard {
     }
 
     /**
-     * @return the Balance
+     * @return the balance
      */
     public double getBalance() {
-        return Balance;
+        return balance;
     }
 
     /**
-     * @param Balance the Balance to set
+     * @param Balance the balance to set
      */
     public void setBalance(double Balance) {
-        this.Balance = Balance;
+        this.balance = Balance;
     }
     // updates
     

@@ -20,7 +20,7 @@
         <script src="JS/bootstrap.min.js"></script>
         <script src="JS/getAllProducts.js"></script>
         <script src="JS/addToShoppingCart.js"></script>
-        <script src="JS/userProfile.js"></script>
+        
         <jsp:include page ='head.jsp'/>
     </head>
     <body>
