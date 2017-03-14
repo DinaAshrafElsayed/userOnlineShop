@@ -3,11 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/ShopProject%20jsp/userOnlineShop/Shop/src/java/sessionhandler/SessionHandler.java</file>
-            <file>file:/E:/ShopProject%20jsp/userOnlineShop/Shop/src/java/servlets/SuccessOrder.java</file>
-            <file>file:/E:/ShopProject%20jsp/userOnlineShop/Shop/src/java/database/DataBaseHandler.java</file>
-            <file>file:/E:/ShopProject%20jsp/userOnlineShop/Shop/src/java/dto/Product.java</file>
-            <file>file:/E:/ShopProject%20jsp/userOnlineShop/Shop/src/java/servlets/Logout.java</file>
+            <file>file:/D:/JspProject/Client/userOnlineShop/Shop/src/java/database/DataBaseHandler.java</file>
+            <file>file:/D:/JspProject/Client/userOnlineShop/Shop/src/java/servlets/RechargeBalance.java</file>
         </group>
     </open-files>
 </project-private>
