@@ -686,11 +686,11 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
     
     @Override
     // ajax in register and in edit
-    public boolean CheckCreditCardNumberExistance(int number) {
+    public boolean CheckCreditCardNumberExistance(long number) {
         try {
             PreparedStatement preparedStatement = getConnection().prepareStatement("select * from creditcard"
                     + " where number=?");
-            preparedStatement.setInt(1, number);
+            preparedStatement.setLong(1, number);
             ResultSet resultset = preparedStatement.executeQuery();
             if (resultset.next()) {
                 // CreditCardNumber found so i can't add new one 

@@ -92,10 +92,13 @@
             <div class="control-group">
                 <label class="control-label" for="creditCardNumber">Number</label>
                 <div class="controls">
-                    <input  class="form-control" type="number" id="creditCardNumber" name="creditCardNumber" placeholder="credit Card Number" onblur="validCreditNumber()" required/>
+                    <input  class="form-control" type="text" id="creditCardNumber" 
+                            name="creditCardNumber" placeholder="Enter credit Card Number" 
+                            pattern="^4[0-9]{12}(?:[0-9]{3})?$" title="4(15 digit)" 
+                            onblur="checkCreditCardNumberUniqueness()"required/>
                     <span>
                         <div class="alert  alert-error fade in custome-error" id="credit_error">
-                            <strong>Enter Valid Credit Card Number</strong>
+                            <strong>Oops! this Card Number attached to another account</strong>
                         </div>
                     </span>
                 </div>
