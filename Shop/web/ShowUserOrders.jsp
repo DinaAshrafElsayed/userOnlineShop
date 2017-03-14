@@ -38,12 +38,12 @@
 
             </c:forEach>
             </tr>
-            </table>
-        </c:forEach>
+        </table>
+    </c:forEach>
 
-    </table>
-    <form action="UsersHasOrders" method="POST">
-        <input class="btn btn-primary" type="submit" value="Back"/>
-    </form>
+</table>
+<form action="UsersHasOrders" method="POST">
+    <input class="btn btn-primary" type="submit" value="Back"/>
+</form>
 
-    <%@include  file="AdminDown.jsp" %>
+<%@include  file="AdminDown.jsp" %>

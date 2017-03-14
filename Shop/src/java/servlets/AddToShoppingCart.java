@@ -67,9 +67,10 @@ public class AddToShoppingCart extends HttpServlet {
             ArrayList<Product> products = (ArrayList<Product>) session.getAttribute("products");
             if (added) {
                 for (Product product1 : products) {
-                    if(product1.getId() == productID)
-                        product1.setQuantity(product1.getQuantity()-productQuantity);
-                        System.out.println("the new quantity is :"+product1.getQuantity());
+                    if (product1.getId() == productID) {
+                        product1.setQuantity(product1.getQuantity() - productQuantity);
+                    }
+                    System.out.println("the new quantity is :" + product1.getQuantity());
                 }
             }
             session.setAttribute("products", products);

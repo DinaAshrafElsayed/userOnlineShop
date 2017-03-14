@@ -10,21 +10,21 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
+
         <link href="themes/css/user_profile.css" rel="stylesheet">
         <script src="JS/jquery.js"></script>
-        
+
         <script src="JS/jquery.min.js"></script>
         <!-- jQuery library -->
         <!-- Latest compiled JavaScript -->
         <script src="JS/bootstrap.min.js"></script>
         <script src="JS/getAllProducts.js"></script>
         <script src="JS/addToShoppingCart.js"></script>
-        
+
         <jsp:include page ='head.jsp'/>
     </head>
     <body>
-            <jsp:include page ='headeruser.jsp'/>
+        <jsp:include page ='headeruser.jsp'/>
         <div id="mainBody">
             <div class="container">
                 <div class="row" id="includeBody">

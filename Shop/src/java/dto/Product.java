@@ -55,6 +55,12 @@ public class Product implements Serializable {
 
     }
 
+    public Product(String name, int id, double price, String desc, String cat, int quan) {
+        this(name, id, price, desc, cat);
+        this.quantity = quan;
+
+    }
+
     /**
      * @return the productName
      */

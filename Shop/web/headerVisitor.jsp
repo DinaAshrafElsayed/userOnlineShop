@@ -11,10 +11,10 @@
                     <a href="ShoppingCart.jsp"><span class="btn btn-mid btn-primary" id="cart"><i class="icon-shopping-cart icon-white"></i>
                             <i id="shoppingCart"> 
                                 <c:if test="${!empty sessionScope.cart}">
-                                       ${sessionScope.cart.getNumberOfItems()}
+                                    ${sessionScope.cart.getNumberOfItems()}
                                 </c:if> 
                                 <c:if test="${empty sessionScope.cart}">
-                                       0
+                                    0
                                 </c:if> 
                             </i></span> </a>
                 </div>
@@ -28,7 +28,7 @@
                 <span class="icon-bar"></span>
             </a>
             <div class="navbar-inner">
-                <a class="brand" href="index.jsp"><img src="themes/images/logo.png" alt="Bootsshop"></a>
+                <a class="brand" href="SearchProduct?category=All"><img src="themes/images/logo.png" alt="Bootsshop"></a>
                 <form class="form-inline navbar-search" method="post" action="SearchProduct">
                     <input id="srchFld" name="srchFld" placeholder="product name"class="srchTxt" type="text" style="width:28%">
                     <select class="srchTxt" name="category" id="category" style="width:28%">
@@ -39,8 +39,8 @@
                         <option>SOUND &amp; VISION </option>
 
                     </select>
-                     <input id="slider1" name ="price"type="range" min="0" max="5000" step="200"style="width:20%"onchange="updateTextInput(this.value);"/>
-                     <span class ="btn btn-primary" id="rangeVal">0</span>
+                    <input id="slider1" name ="price"type="range" min="0" max="5000" step="200"style="width:20%"onchange="updateTextInput(this.value);"/>
+                    <span class ="btn btn-primary" id="rangeVal">0</span>
                     <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
                 </form>
                 <ul id="topMenu" class="nav pull-right">

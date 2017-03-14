@@ -24,7 +24,7 @@
                 </div>
             </div>
 
- 
+
             <div class="control-group">
                 <label class="control-label">Date of Birth<sup>*</sup></label>
                 <div class="controls">

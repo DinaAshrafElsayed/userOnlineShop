@@ -90,7 +90,7 @@
                                 <label class="control-label"><strong> Recharge CODE: </strong> </label>
                                 <div class="controls">
                                     <input type="hidden" name="shoppingCart" value ="cart">
-                                    <input type="number" class="input-medium" id="cardNumber2" name="cardNumber" placeholder="CODE" maxlength="8" >
+                                    <input type="number" class="input-medium" id="cardNumber2" name="cardNumber" placeholder="CODE" min="1" max="99999999"  >
                                     <button type="submit" class="btn" id="rechargeButton2"> ADD </button>
                                     <div id="validationCard"></div>
                                 </div>
@@ -102,10 +102,15 @@
         </table>	
     </c:if>
     <a href="index.jsp" class="btn btn-large"><i class="icon-arrow-left"></i> Continue Shopping </a>
-    <c:if test="${empty sessionScope.user}">
+    <c:if test="${empty sessionScope.user and sessionScope.cart.getNumberOfItems()>0}">
         <div class ="btn btn-danger btn-large pull-right"><i>you have to sign in to checkout</i></div>
-            </c:if>
-            <c:if test="${!empty sessionScope.user}">
+    </c:if>
+    <c:if test="${!empty sessionScope.user and sessionScope.cart.getNumberOfItems()>0 }">
         <a href="checkout" class="btn btn-large pull-right">next <i class="icon-arrow-right"></i></a>
         </c:if>
+        <c:if test="${ sessionScope.cart.getNumberOfItems() <= 0 }">
+        <div class ="btn btn-danger btn-large pull-right"><i>can't check out with any empty cart</i>
+        </div>
+    </c:if>
+
 </div>

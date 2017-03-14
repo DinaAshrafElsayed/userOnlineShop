@@ -50,13 +50,14 @@ public class GetProduct extends HttpServlet {
             Product selectedProduct = dataBaseHandler.getProduct(productID);
             HttpSession session = request.getSession(true);
             ArrayList<Product> products = (ArrayList<Product>) session.getAttribute("products");
-            if (products != null) {
-                for (Product product1 : products) {
-                    if (product1.getId() == productID) {
-                        selectedProduct = product1;
-                    }
-                }
-            }
+//            if (products != null) {
+//                for (Product product1 : products) {
+//                    if (product1.getId() == productID) {
+//                        selectedProduct = product1;
+//                    }
+//                }
+//            }
+            System.out.println("inseide servlet "+selectedProduct.getMainImageUrl());
             session.setAttribute("selectedProduct", selectedProduct);
             System.out.println("product id " + productID);
             response.sendRedirect("FullProductDetails.jsp");

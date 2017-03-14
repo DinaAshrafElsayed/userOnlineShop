@@ -20,17 +20,17 @@ public class SessionHandler implements HttpSessionListener {
 
     @Override
     public void sessionCreated(HttpSessionEvent se) {
-        
+
     }
 
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
         System.out.println("start of removing session ");
-        User user=(User) se.getSession().getAttribute("user");
-        ShoppingCart cart=(ShoppingCart) se.getSession().getAttribute("cart");
-        if(user!= null && cart!=null){
-            if(cart.getNumberOfItems()>0){
-                DataBaseHandler dataBaseHandler=DataBaseHandler.getinstance();
+        User user = (User) se.getSession().getAttribute("user");
+        ShoppingCart cart = (ShoppingCart) se.getSession().getAttribute("cart");
+        if (user != null && cart != null) {
+            if (cart.getNumberOfItems() > 0) {
+                DataBaseHandler dataBaseHandler = DataBaseHandler.getinstance();
                 dataBaseHandler.createOrder(user.getEmail(), cart.getProducts());
             }
         }

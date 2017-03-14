@@ -63,9 +63,9 @@ public class MainpulateShoppingCart extends HttpServlet {
                 boolean removed = shoppingCart.removeProduct(productID);
                 out.print(removed);
                 if (removed) {
-                    quantity = -1*quantityOfProduct;
+                    quantity = -1 * quantityOfProduct;
                 }
-                System.out.println("removed "+quantity +" items ");
+                System.out.println("removed " + quantity + " items ");
             }
             ArrayList<Product> products = (ArrayList<Product>) session.getAttribute("products");
             for (Product product1 : products) {

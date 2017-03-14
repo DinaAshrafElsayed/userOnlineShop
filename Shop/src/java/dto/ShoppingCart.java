@@ -18,8 +18,8 @@ import javax.swing.text.NumberFormatter;
 public class ShoppingCart {
 
     ArrayList<Product> products = new ArrayList<>();
-    private double totalBill;
-    private boolean allAvaliable;
+    private double totalBill = 0;
+    private boolean allAvaliable = true;
 
     /**
      * @return the products

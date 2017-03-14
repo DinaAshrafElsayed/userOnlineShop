@@ -34,7 +34,7 @@ public class CheckCardNumberExistanceServlet extends HttpServlet {
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         String cardNumber = request.getParameter("cardNumber");
-        System.out.println("number "+cardNumber);
+        System.out.println("number " + cardNumber);
         DataBaseHandler databaseRef = DataBaseHandler.getinstance();
         System.out.println("in check recharge card number");
         boolean isExist = databaseRef.CheckRechargeNumberExistance(Integer.parseInt(cardNumber));

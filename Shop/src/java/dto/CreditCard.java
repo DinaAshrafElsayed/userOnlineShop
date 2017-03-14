@@ -12,6 +12,7 @@ import java.time.LocalDate;
  * @author Dina Ashraf
  */
 public class CreditCard {
+
     private long creditCardNumber;
     private LocalDate expireDate;
     private double balance;
@@ -64,6 +65,6 @@ public class CreditCard {
         this.balance = Balance;
     }
     // updates
-    
+
     //end of updates
 }
