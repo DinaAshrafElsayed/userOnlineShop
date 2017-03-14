@@ -56,11 +56,11 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Admin</web-resource-name>
-            <url-pattern>/Shop/AddQuantity.jsp</url-pattern>
-            <url-pattern>/Shop/AddRechargeCard.jsp</url-pattern>
-            <url-pattern>/Shop/AdminIndex.jsp</url-pattern>
-            <url-pattern>/Shop/AllProduct.jsp</url-pattern>
-            <url-pattern>/Shop/CustomProduct.jsp</url-pattern>
+            <url-pattern>/AddQuantity.jsp</url-pattern>
+            <url-pattern>/AddRechargeCard.jsp</url-pattern>
+            <url-pattern>/AdminIndex.jsp</url-pattern>
+            <url-pattern>/AllProduct.jsp</url-pattern>
+            <url-pattern>/CustomProduct.jsp</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>
@@ -77,7 +77,7 @@
     <login-config>
         <auth-method>FORM</auth-method>
         <form-login-config>
-            <form-login-page>/login.html</form-login-page>
+            <form-login-page>/Login.html</form-login-page>
             <form-error-page>/ErrorPage3.html</form-error-page>
         </form-login-config>
     </login-config>

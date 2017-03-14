@@ -29,11 +29,11 @@ public class Logout extends HttpServlet {
                 break;
             }
         }
-        User user=(User) request.getSession(false).getAttribute("user");
-        ShoppingCart cart=(ShoppingCart) request.getSession(false).getAttribute("cart");
-        if(user!= null && cart!=null){
-            if(cart.getNumberOfItems()>0){
-                DataBaseHandler dataBaseHandler=DataBaseHandler.getinstance();
+        User user = (User) request.getSession(false).getAttribute("user");
+        ShoppingCart cart = (ShoppingCart) request.getSession(false).getAttribute("cart");
+        if (user != null && cart != null) {
+            if (cart.getNumberOfItems() > 0) {
+                DataBaseHandler dataBaseHandler = DataBaseHandler.getinstance();
                 dataBaseHandler.createOrder(user.getEmail(), cart.getProducts());
             }
         }
@@ -49,6 +49,6 @@ public class Logout extends HttpServlet {
             throws ServletException, IOException {
     }
     // updates
-    
+
     //end of updates
 }

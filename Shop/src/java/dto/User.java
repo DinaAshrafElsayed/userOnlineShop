@@ -12,6 +12,7 @@ import java.time.LocalDate;
  * @author Dina Ashraf
  */
 public class User {
+
     private String email;
     private String imageUrl;
     private String gender;
@@ -51,7 +52,6 @@ public class User {
         this.type = type;
     }
 
-    
     /**
      * @return the email
      */
@@ -211,6 +211,6 @@ public class User {
         return "User{" + "email=" + email + ", imageUrl=" + imageUrl + ", gender=" + gender + ", firstName=" + firstName + ", lastName=" + lastName + ", bDate=" + bDate + ", password=" + password + ", phone=" + phone + ", address=" + address + ", type=" + type + ", creditCard=" + creditCard + '}';
     }
     // updates
-    
+
     //end of updates
 }

@@ -86,8 +86,8 @@
                 </li>
             </c:forEach>
         </c:if>
-            <c:if test="${empty sessionScope.products}">
-                <h3 style="text-align:center"> No Avaliable Products </h3>
-            </c:if>
+        <c:if test="${empty sessionScope.products}">
+            <h3 style="text-align:center"> No Avaliable Products </h3>
+        </c:if>
     </ul>
 </div>

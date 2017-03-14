@@ -72,12 +72,12 @@ public class SuccessOrder extends HttpServlet {
                     dataBaseHandler.updateOrderStatus(user.getEmail(), 1);
                     //// update products quantity
                     for (Product product : shoppingCart.getProducts()) {
-                         Product updatedProduct = dataBaseHandler.getProduct(product.getId());
-                         updatedProduct.setQuantity(updatedProduct.getQuantity()-product.getQuantity());
-                        dataBaseHandler.editQuantity(updatedProduct.getId(),updatedProduct.getQuantity());
+                        Product updatedProduct = dataBaseHandler.getProduct(product.getId());
+                        updatedProduct.setQuantity(updatedProduct.getQuantity() - product.getQuantity());
+                        dataBaseHandler.editQuantity(updatedProduct.getId(), updatedProduct.getQuantity());
                     }
                     //// update user balance
-                    dataBaseHandler.updateUserBalance(user, (-1*shoppingCart.getTotalBill()));
+                    dataBaseHandler.updateUserBalance(user, (-1 * shoppingCart.getTotalBill()));
                     user.getCreditCard().setBalance(dataBaseHandler.getUserBalance(user.getEmail()));
                     session.setAttribute("user", user);
                     //update products in session!
@@ -85,12 +85,9 @@ public class SuccessOrder extends HttpServlet {
                     session.removeAttribute("cart");
                     //redirect to page with div that has this out successful order and back button!
                     response.sendRedirect("successOrder.jsp");
-                }
-
-                //else
+                } //else
                 //// redirect to checkout servlet
-                else
-                {
+                else {
                     System.out.println("not avaliable!");
                     RequestDispatcher dispatcher = request.getRequestDispatcher("/checkout");
                     dispatcher.forward(request, response);

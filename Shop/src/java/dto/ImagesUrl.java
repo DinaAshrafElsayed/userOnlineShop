@@ -12,21 +12,21 @@ import java.util.ArrayList;
  *
  * @author Dina Ashraf
  */
-public class ImagesUrl implements Serializable{
+public class ImagesUrl implements Serializable {
+
     private ArrayList<String> ImagesUrl = new ArrayList<>();
 
     /**
      * @return the ImagesUrl
      */
-    public boolean addItem(String url)
-    {
+    public boolean addItem(String url) {
         return ImagesUrl.add(url);
     }
+
     public ArrayList<String> getImagesUrl() {
         return ImagesUrl;
     }
-    
+
     // updates
-    
     //end of updates
 }

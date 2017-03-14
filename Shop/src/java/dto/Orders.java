@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author Ahmed labib
  */
 public class Orders {
+
     private String userEmail;
     private String date;
     private ArrayList<Product> orderedProducts;
@@ -67,5 +68,5 @@ public class Orders {
     public void setOrderedProducts(ArrayList<Product> orderedProducts) {
         this.orderedProducts = orderedProducts;
     }
-    
+
 }

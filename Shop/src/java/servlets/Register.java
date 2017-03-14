@@ -56,7 +56,7 @@ public class Register extends HttpServlet {
         String email = request.getParameter("emial");
         String password = request.getParameter("password");
         String DateOfBirth = request.getParameter("DateOfBirth");
-        System.out.println("register "+DateOfBirth);
+        System.out.println("register " + DateOfBirth);
         LocalDate localDate = LocalDate.parse(DateOfBirth);
         String gender = request.getParameter("gender");
         String address = request.getParameter("address");

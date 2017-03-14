@@ -30,7 +30,7 @@
             <script>
                 document.getElementById("success").style.display = "block";
             </script>
-           <c:remove var="invalid" scope="request"/>
+            <c:remove var="invalid" scope="request"/>
         </c:if>
         <!-- beshoy edit end -->
 

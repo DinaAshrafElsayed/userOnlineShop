@@ -1,9 +1,9 @@
-$( document ).ready(function() {
-    $( "#slider1" ).val(0);
+$(document).ready(function () {
+    $("#slider1").val(0);
     $.get("GetAllProducts", callback);
 });
 function getAllProducts() {
-        $.get("GetAllProducts", callback);
+    $.get("GetAllProducts", callback);
 }
 function callback(response, status, xhr)
 {

@@ -13,20 +13,15 @@
         <td><a>update</a></td>
 
     </tr>
-    <sql:setDataSource var="db" driver="com.mysql.jdbc.Driver"  
-                       url="jdbc:mysql://localhost/onlineshopping"  
-                       user="root"  password=""/>  
-    <sql:query dataSource="${db}" var="rs">  
-        SELECT product_id,productname,quantity,price,discount,categoryname from products;  
-    </sql:query>  
-    <c:forEach var="product" items="${rs.rows}">  
-        <tr id="${product.product_id}">
-            <td>${product.productname}</td>
+
+    <c:forEach var="product" items="${requestScope.products}">  
+        <tr id="${product.id}">
+            <td>${product.productName}</td>
             <td>${product.quantity}</td>
             <td>${product.price}</td>
-            <td>${product.categoryname}</td>
+            <td>${product.categoryName}</td>
             <td>${product.discount}</td>
-            <td><a href="updateProduct.jsp?id=${product.product_id}">update</a></td>
+            <td><a href="updateProduct.jsp?id=${product.id}">update</a></td>
 
         </tr>
     </c:forEach>  

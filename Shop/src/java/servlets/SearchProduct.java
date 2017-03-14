@@ -51,26 +51,25 @@ public class SearchProduct extends HttpServlet {
             String productName = request.getParameter("srchFld");
             double productPrice = -1;
             String price = request.getParameter("price");
-            if(price!=null)
-            {
+            if (price != null) {
                 productPrice = Double.parseDouble(price);
-                if(productPrice ==0)
+                if (productPrice == 0) {
                     productPrice = -1;
+                }
             }
-            if(category.equals("All")){
-                category="";
+            if (category.equals("All")) {
+                category = "";
             }
-            if(productName ==null)
-            {
+            if (productName == null) {
                 productName = "";
             }
             ArrayList<Product> products = dataBaseHandler.
                     searchProducts(category, productName, productPrice);
             HttpSession session = request.getSession(true);
             session.setAttribute("products", products);
-            System.out.println("size from search "+products.size());            
-            response.sendRedirect("index.jsp?category="+request.getParameter("category")+
-                    "&name="+productName);
+            System.out.println("size from search " + products.size());
+            response.sendRedirect("index.jsp?category=" + request.getParameter("category")
+                    + "&name=" + productName);
         }
     }
 

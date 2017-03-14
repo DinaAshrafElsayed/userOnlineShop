@@ -55,7 +55,7 @@ public class RechargeBalance extends HttpServlet {
             boolean isExist = databaseRef.CheckRechargeNumberExistance(Integer.parseInt(cardNumber));
             if (isExist) {
                 databaseRef.updateUserBalance(user, rechargeCardValue);
-        //        user.getCreditCard().setBalance(databaseRef.getUserBalance(user.getEmail()));
+                //        user.getCreditCard().setBalance(databaseRef.getUserBalance(user.getEmail()));
                 session.setAttribute("user", user);
             }
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ShoppingCart.jsp");
@@ -64,7 +64,7 @@ public class RechargeBalance extends HttpServlet {
             boolean isExist = databaseRef.CheckRechargeNumberExistance(Integer.parseInt(cardNumber));
             if (isExist) {
                 databaseRef.updateUserBalance(user, rechargeCardValue);
-          //      user.getCreditCard().setBalance(databaseRef.getUserBalance(user.getEmail()));
+                //      user.getCreditCard().setBalance(databaseRef.getUserBalance(user.getEmail()));
                 session.setAttribute("user", user);
             }
             RequestDispatcher dispatcher = request.getRequestDispatcher("/checkout.jsp");
