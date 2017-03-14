@@ -9,12 +9,12 @@
         <div id="gallery" class="span3">
             <c:set var="item" scope="session" value="${sessionScope.selectedProduct}"/>
             <a href="${item.getMainImageUrl()}">
-                <img src="${item.getMainImageUrl()}" style="width:100%" alt="Fujifilm FinePix S2950 Digital Camera">
+                <img src="${item.getMainImageUrl()}" style="width:100%" alt="${item.getProductName()}">
             </a>
             <div id="differentview" class="moreOptopm carousel slide">
                 <div class="carousel-inner">
                     <div class="item active">
-                        <c:forEach items="${sessionScope.selectedProduct.otherImagesUrls.imagesUrl}" var="itemImage">
+                        <c:forEach items="${sessionScope.selectedProduct.otherImagesUrls.imagesUrl  }" var="itemImage">
                             <a href="${itemImage}"> <img style="width:29%" src="${itemImage}" alt=""></a>
                             </c:forEach>
                     </div>

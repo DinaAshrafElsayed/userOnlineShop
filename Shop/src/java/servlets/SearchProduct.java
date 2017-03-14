@@ -47,7 +47,7 @@ public class SearchProduct extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String category = request.getParameter("category");
-            //System.out.println("asdasdas"+category);
+            System.out.println("asdasdas"+category);
             String productName = request.getParameter("srchFld");
             double productPrice = -1;
             String price = request.getParameter("price");
@@ -65,9 +65,10 @@ public class SearchProduct extends HttpServlet {
             }
             ArrayList<Product> products = dataBaseHandler.
                     searchProducts(category, productName, productPrice);
-            HttpSession session = request.getSession(true);
+            HttpSession session = request.getSession(false);
             session.setAttribute("products", products);
             System.out.println("size from search " + products.size());
+            System.out.println("ids from search " + products.get(0));
             response.sendRedirect("index.jsp?category=" + request.getParameter("category")
                     + "&name=" + productName);
         }
