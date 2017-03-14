@@ -59,7 +59,7 @@ public class RechargeBalance extends HttpServlet {
                 //        user.getCreditCard().setBalance(databaseRef.getUserBalance(user.getEmail()));
                 session.setAttribute("user", user);
             }
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("ShoppingCart.jsp");
             //RequestDispatcher dispatcher = request.getRequestDispatcher("/ShoppingCart.jsp");
             //dispatcher.forward(request, response);
         } else if (checkout != null) {
@@ -69,7 +69,7 @@ public class RechargeBalance extends HttpServlet {
                 //      user.getCreditCard().setBalance(databaseRef.getUserBalance(user.getEmail()));
                 session.setAttribute("user", user);
             }
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("checkout.jsp");
             //RequestDispatcher dispatcher = request.getRequestDispatcher("/checkout.jsp");
             //dispatcher.forward(request, response);
         }
