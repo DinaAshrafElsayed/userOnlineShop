@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package database;
 
 import dto.CreditCard;
@@ -35,14 +30,14 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
     // close connection in context destruction
     private static Connection connection = null;
     private static DataBaseHandler instance = null;
-
+    
     public static DataBaseHandler getinstance() {
         if (instance == null) {
             return new DataBaseHandler();
         }
         return instance;
     }
-
+    
     private DataBaseHandler() {
         try {
             System.out.println("inside constructor");
@@ -53,15 +48,15 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             ex.printStackTrace();
         }
     }
-
+    
     private Connection getConnection() {
         if (DataBaseHandler.connection == null) {
             DataBaseHandler.connection = createConnection();
         }
-
+        
         return DataBaseHandler.connection;
     }
-
+    
     private Connection createConnection() {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/onlineshopping", "root", "");
@@ -72,7 +67,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             return null;
         }
     }
-
+    
     @Override
     public boolean addProduct(Product product) {
         try {
@@ -86,9 +81,9 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             preparedStatment1.setString(5, product.getDescription());
             preparedStatment1.setDouble(6, product.getDiscount());
             preparedStatment1.setString(7, product.getCategoryName());
-
+            
             if (preparedStatment1.executeUpdate() > 0) {
-
+                
                 PreparedStatement preparedStatment2 = getConnection().prepareStatement("select product_id "
                         + "from products ORDER BY product_id DESC LIMIT 1");
                 ResultSet resultSet = preparedStatment2.executeQuery();
@@ -112,7 +107,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
                     return true;
                 }
             }
-
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
             return false;
@@ -143,7 +138,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
         }
         // end beshoy edit 
     }
-
+    
     @Override
     public boolean removeProduct(Product product) {
         try {
@@ -159,7 +154,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
                 // can't remove product image from productimages table 
                 return false;
             }
-
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
             return false;
@@ -200,7 +195,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             return null;
         }
     }
-
+    
     @Override
     public User getUser(String email) {
         try {
@@ -232,7 +227,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
         }
         return null;
     }
-
+    
     @Override
     public boolean checkEmailExistance(String email) {
         try {
@@ -252,7 +247,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             return true;
         }
     }
-
+    
     @Override
     public boolean signup(User user) {
         try {
@@ -286,13 +281,13 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             } else {
                 return false;
             }
-
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
             return false;
         }
     }
-
+    
     @Override
     public User login(String email, String password) {
         try {
@@ -325,7 +320,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
         }
         return null;
     }
-
+    
     @Override
     public ArrayList<Product> searchProducts(String category, String productName, double productPrice) {
         ArrayList<Product> productList = new ArrayList<>();
@@ -335,7 +330,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             return searchWithCategoryAndName(category, productName, productList);
         }
     }
-
+    
     private ArrayList<Product> searchWithCategoryAndName(String category, String productName, ArrayList<Product> productList) {
         try {
             PreparedStatement preparedStatment2 = getConnection().prepareStatement("select * from products"
@@ -357,7 +352,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             return null;
         }
     }
-
+    
     private ArrayList<Product> SearchProductGeneric(String category, String productName, double productPrice, ArrayList<Product> productList) {
         try {
             PreparedStatement preparedStatment1 = getConnection().prepareStatement("select * from products"
@@ -368,7 +363,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             ResultSet resultSet = preparedStatment1.executeQuery();
             ImagesUrl otherImagesUrl = new ImagesUrl();
             while (resultSet.next()) {
-
+                
                 int productID = resultSet.getInt("product_id");
                 PreparedStatement imagesPreparedStatement = getConnection().
                         prepareStatement("select * from productimages where"
@@ -393,7 +388,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             return null;
         }
     }
-
+    
     @Override
     public ArrayList<Product> getAllproducts() {
         ArrayList<Product> productList = new ArrayList<>();
@@ -402,7 +397,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             ResultSet resultSet = preparedStatement.executeQuery();
             ImagesUrl otherImagesUrl = new ImagesUrl();
             while (resultSet.next()) {
-
+                
                 int productID = resultSet.getInt("product_id");
                 PreparedStatement imagesPreparedStatement = getConnection().prepareStatement("select * from productimages"
                         + " where products_product_id =? ");
@@ -426,7 +421,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             return null;
         }
     }
-
+    
     @Override
     public boolean editUserDetials(User user) {
         try {
@@ -453,7 +448,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             return false;
         }
     }
-
+    
     @Override
     public double getUserBalance(String email) {
         try {
@@ -468,7 +463,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
                 System.out.println(creditCardNum);
                 preparedStatment.setLong(1, creditCardNum);
                 resultset = preparedStatment.executeQuery();
-
+                
                 if (resultset.next()) {
                     System.out.println("enterd if");
                     return resultset.getDouble("balance");
@@ -480,10 +475,10 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
         }
         return 0;
     }
-
+    
     @Override
     public boolean updateUserBalance(User user, double addedBalance) {
-
+        
         try {
             System.out.println("added balnce " + addedBalance);
             double oldBalance = user.getCreditCard().getBalance();
@@ -500,18 +495,18 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
                 System.out.println(user.getCreditCard().getBalance());
                 return true;
             }
-
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
             return false;
         }
         return false;
     }
-
+    
     @Override
     public boolean createOrder(String email, ArrayList<Product> products) {
         try {
-
+            
             PreparedStatement preparedStatment1 = getConnection().prepareStatement("INSERT INTO `orders`(`date`, `status`, `User_email`) VALUES (?, ?, ?)");
             preparedStatment1.setDate(1, Date.valueOf(LocalDate.now()));
             preparedStatment1.setInt(2, 0);
@@ -533,7 +528,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             return false;
         }
     }
-
+    
     private boolean addProductsToOrder(int orderID, ArrayList<Product> products) {
         for (Product product : products) {
             try {
@@ -556,7 +551,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
         }
         return true;
     }
-
+    
     @Override
     public boolean checkProductNameExistance(String productName) {
         try {
@@ -577,7 +572,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             return true;
         }
     }
-
+    
     @Override
     public boolean updateOrderStatus(String email, int status) {
         try {
@@ -591,7 +586,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             return false;
         }
     }
-
+    
     @Override
     public boolean DeleteOrder(String email) {
         try {
@@ -607,7 +602,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
                 if (preparedStatement2.executeUpdate() > 0) {
                     PreparedStatement preparedStatement3 = preparedStatement.getConnection().prepareStatement("delete from orders where id=?");
                     preparedStatement3.setInt(1, orderID);
-                    System.out.println("id is "+orderID);
+                    System.out.println("id is " + orderID);
                     if (preparedStatement3.executeUpdate() > 0) {
                         System.out.println("executing the last delete");
                         return true;
@@ -620,7 +615,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
         }
         return false;
     }
-
+    
     @Override
     public Product getProduct(int productID) {
         try {
@@ -646,14 +641,14 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
                         resultSet.getString("categoryName"), productID);
                 return product;
             }
-
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
         }
         return null;
     }
-
+    
     @Override
     public ArrayList<Product> getDiscountedProducts() {
         ArrayList<Product> discountedProductList = new ArrayList<>();
@@ -685,7 +680,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             return null;
         }
     }
-
+    
     @Override
     // ajax in register and in edit
     public boolean CheckCreditCardNumberExistance(int number) {
@@ -743,7 +738,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             return null;
         }
     }
-
+    
     @Override
     public ArrayList<String> getUserThatHasOrders() {
         try {
@@ -762,7 +757,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             return null;
         }
     }
-
+    
     @Override
     public boolean CheckRechargeNumberExistance(int rechargeCardNumber) {
         try {
@@ -794,12 +789,12 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
         }
     }
     
-    public int getRechargeNumberValue(int cardNumber){
+    public int getRechargeNumberValue(int cardNumber) {
         try {
             PreparedStatement getCardNumberValuePST = getConnection().prepareStatement("select value from rechargecards where number =?");
             getCardNumberValuePST.setInt(1, cardNumber);
             ResultSet resultset = getCardNumberValuePST.executeQuery();
-            if(resultset.next()){
+            if (resultset.next()) {
                 return resultset.getInt("value");
             }
         } catch (SQLException ex) {
@@ -824,7 +819,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
         }
         return flag;
     }
-
+    
     @Override
     public boolean addRechargeCards(int number, int amount) {
         PreparedStatement st;
@@ -833,19 +828,19 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
         for (int i = 1; i <= number; i++) {
             for (int j = 0; j < 7; j++) {
                 cardNumber[j] = (new Random().nextInt(9) + 1);
-
+                
             }
             String s = Arrays.toString(cardNumber);
             StringBuilder builder = new StringBuilder();
             for (int x : cardNumber) {
                 builder.append(x);
-
+                
             }
             String text = builder.toString();
             System.out.println(text);
             try {
                 st = getConnection().prepareCall("insert into rechargecards(number,value,status) values(?,?,?)");
-
+                
                 st.setInt(1, Integer.parseInt(text));
                 st.setInt(2, amount);
                 st.setString(3, "1");
@@ -854,11 +849,11 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
                 Logger.getLogger(DataBaseHandler.class.getName()).log(Level.SEVERE, null, ex);
                 return false;
             }
-
+            
         }
         return true;
     }
-
+    
     @Override
     public ShoppingCart getUnboughtOrder(String email) {
         try {
@@ -870,7 +865,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             if (resultset2.next()) {
                 System.out.println("insdie db unbougt cart");
                 int id = resultset2.getInt("id");
-                System.out.println("id "+id);
+                System.out.println("id " + id);
                 PreparedStatement preparedStatement1 = getConnection().prepareStatement("SELECT * FROM orderdetails where order_id=?");
                 preparedStatement1.setInt(1, id);
                 ResultSet resultset1 = preparedStatement1.executeQuery();
@@ -889,4 +884,38 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
             return null;
         }
     }
+    
+    @Override
+    public ArrayList<Product> getProducts() {
+        ArrayList<Product> products = new ArrayList<>();
+        try {
+            PreparedStatement st = getConnection().prepareCall("select * from products");
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Product p = new Product(rs.getString("productname"), rs.getInt("product_id"), rs.getDouble("price"), rs.getString("description"), rs.getString("categoryname"), rs.getInt("quantity"));
+                products.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBaseHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return products;
+    }
+    
+    public ArrayList<Product> getProducts(String product) {
+        ArrayList<Product> products = new ArrayList<>();
+        try {
+            PreparedStatement st = getConnection().prepareCall("select * from products where productname=?");
+            st.setString(1, product);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Product p = new Product(rs.getString("productname"), rs.getInt("product_id"), rs.getDouble("price"), rs.getString("description"), rs.getString("categoryname"), rs.getInt("quantity"));
+                products.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBaseHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return products;
+        
+    }
+    
 }

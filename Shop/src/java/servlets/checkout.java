@@ -106,7 +106,7 @@ public class checkout extends HttpServlet {
                 ////checkout
                 ////create order and make status 1  (update order)   
                 //// update products quantity 
-                
+
             }
 
         }

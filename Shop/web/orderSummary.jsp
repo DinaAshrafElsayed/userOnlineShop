@@ -85,8 +85,8 @@
             </tr>
         </tbody>
     </table>
-     <c:if test="${!empty sessionScope.user and sessionScope.user.getCreditCard().getBalance() < sessionScope.cart.getTotalBill()}" >
-       <table class="table table-bordered">
+    <c:if test="${!empty sessionScope.user and sessionScope.user.getCreditCard().getBalance() < sessionScope.cart.getTotalBill()}" >
+        <table class="table table-bordered">
             <tbody>
                 <tr>
                     <td> 
@@ -115,8 +115,8 @@
         <c:if test="${!empty sessionScope.user and sessionScope.user.getCreditCard().getBalance() < sessionScope.cart.getTotalBill() and sessionScope.cart.getNumberOfItems() > 0}" >
         <div class ="btn btn-danger btn-large pull-right"><i>you have to have enough Balance to Buy please Recharge</i></div>
     </c:if>
-        <c:if test="${ sessionScope.cart.getNumberOfItems() <= 0 }">
-                <div class ="btn btn-danger btn-large pull-right"><i>can't check out with any empty cart</i>
-                </div>
-        </c:if>
+    <c:if test="${ sessionScope.cart.getNumberOfItems() <= 0 }">
+        <div class ="btn btn-danger btn-large pull-right"><i>can't check out with any empty cart</i>
+        </div>
+    </c:if>
 </div>

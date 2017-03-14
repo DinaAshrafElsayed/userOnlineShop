@@ -104,13 +104,13 @@
     <a href="index.jsp" class="btn btn-large"><i class="icon-arrow-left"></i> Continue Shopping </a>
     <c:if test="${empty sessionScope.user and sessionScope.cart.getNumberOfItems()>0}">
         <div class ="btn btn-danger btn-large pull-right"><i>you have to sign in to checkout</i></div>
-            </c:if>
-            <c:if test="${!empty sessionScope.user and sessionScope.cart.getNumberOfItems()>0 }">
+    </c:if>
+    <c:if test="${!empty sessionScope.user and sessionScope.cart.getNumberOfItems()>0 }">
         <a href="checkout" class="btn btn-large pull-right">next <i class="icon-arrow-right"></i></a>
         </c:if>
         <c:if test="${ sessionScope.cart.getNumberOfItems() <= 0 }">
-                <div class ="btn btn-danger btn-large pull-right"><i>can't check out with any empty cart</i>
-                </div>
-        </c:if>
-        
+        <div class ="btn btn-danger btn-large pull-right"><i>can't check out with any empty cart</i>
+        </div>
+    </c:if>
+
 </div>

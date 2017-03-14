@@ -66,7 +66,7 @@ public class Login extends HttpServlet {
             session.setAttribute("user", user);
             System.out.println("session created");
             ShoppingCart unboughtCart = instance.getUnboughtOrder(username);
-            System.out.println("number of unbought cart"+unboughtCart.getNumberOfItems());
+            System.out.println("number of unbought cart" + unboughtCart.getNumberOfItems());
             if (unboughtCart.getNumberOfItems() > 0) {
                 session.setAttribute("cart", unboughtCart);
                 instance.DeleteOrder(username);

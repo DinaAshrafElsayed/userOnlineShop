@@ -1,2 +1,4 @@
 /Shop/build/
 /Shop/dist/
+*.xml
+*.properities

@@ -10,7 +10,7 @@
                 <c:if test="${empty sessionScope.cart}">
                     0 
                 </c:if>
-                    Items in your cart
+                Items in your cart
             </div><!--<span class="badge badge-warning pull-right" id="cartPrice">$155.00</span>--></a>
     </div>
     <ul id="sideManu" class="nav nav-tabs nav-stacked">

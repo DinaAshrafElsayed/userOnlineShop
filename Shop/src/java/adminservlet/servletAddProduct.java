@@ -82,7 +82,7 @@ public class servletAddProduct extends HttpServlet {
                             mainImage = path + itemName;
                             i++;
                         }
-                        
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

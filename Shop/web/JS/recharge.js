@@ -18,10 +18,10 @@ function rechargeCardCallBack(response, status, xhr)
         console.log("here");
         if (response == "Valid Card Number")
         {
-            $("#rechargeButton2").attr ("disabled",false);
+            $("#rechargeButton2").attr("disabled", false);
         } else
         {
-            $("#rechargeButton2").attr ("disabled",true);
+            $("#rechargeButton2").attr("disabled", true);
         }
     }
 }
