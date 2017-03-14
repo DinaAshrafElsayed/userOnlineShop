@@ -51,7 +51,6 @@
     function handlecheckUserAlreadySignedUp() {
         if (request.readyState === 4 && request.status === 200) {
                        if (request.responseText == "Exist") {
-                document.getElementById("email_error").InnerHTML = "This Email Already Has Account";
                 document.getElementById("email_error").style.display = "inline";
                 document.getElementById("registerButton").disabled = true;
             } else
