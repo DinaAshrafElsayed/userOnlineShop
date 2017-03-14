@@ -25,11 +25,11 @@
             <div class="control-group">
                 <label class="control-label" for="input_email">Email <sup>*</sup></label>
                 <div class="controls">
-                    <input type="text" id="email" name="emial" placeholder="Email"  onblur="validEmail()" required >
+                    <input type="email" id="email" name="emial" placeholder="Email"  onblur="checkUserAlreadySignedUp()" required >
                     <span>
                         <div class="alert  alert-error fade in custome-error" id="email_error">
                             <button type="button" class="close" data-dismiss="alert">x</button>
-                            <strong>Email must be in form xyz@xxx.com</strong>
+                            <strong>This Email Already Has Account</strong>
                         </div>
                     </span>
                 </div>
@@ -113,7 +113,7 @@
                 <div class="controls">
                     <input type="hidden" name="email_create" value="1">
                     <input type="hidden" name="is_new_customer" value="1">
-                    <input class="btn btn-large btn-success" type="submit" value="Register"/>
+                    <input id="registerButton" class="btn btn-large btn-success" type="submit" value="Register"/>
                 </div>
             </div>		
         </form>

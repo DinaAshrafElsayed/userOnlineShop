@@ -34,3 +34,29 @@
         document.getElementById('rangeVal').innerHTML = val;
     }
 </script>
+<script>
+    var request = null;
+
+    function checkUserAlreadySignedUp() {
+        if (window.XMLHttpRequest)
+            request = new XMLHttpRequest();
+        else if (window.ActiveXObject)
+            request = new ActiveXObject(Microsoft.XMLHTTP);
+        request.onreadystatechange = handlecheckUserAlreadySignedUp;
+
+        request.open("GET", "checkUserAlreadySignedUp?email=" + document.getElementById("email").value, true);
+        request.send(null);
+
+    }
+    function handlecheckUserAlreadySignedUp() {
+        if (request.readyState === 4 && request.status === 200) {
+                       if (request.responseText == "Exist") {
+                document.getElementById("email_error").InnerHTML = "This Email Already Has Account";
+                document.getElementById("email_error").style.display = "inline";
+                document.getElementById("registerButton").disabled = true;
+            } else
+                document.getElementById("registerButton").disabled = false;
+        }
+    }
+
+</script>
