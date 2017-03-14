@@ -4,7 +4,7 @@
 
 <script src="themes/js/bootshop.js"></script>
 <script src="JS/login.js"></script>
-<script src="JS/customeScript.js"></script>
+<script src="JS/registerScript.js"></script>
 <script src="themes/js/jquery.lightbox-0.5.js"></script>
 <script>
     var request = null;
