@@ -49,26 +49,29 @@ public class RechargeBalance extends HttpServlet {
             databaseRef.updateUserBalance(user, rechargeCardValue);
             //user.getCreditCard().setBalance(databaseRef.getUserBalance(user.getEmail()));
             session.setAttribute("user", user);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
-            dispatcher.forward(request, response);
+            response.sendRedirect("index.jsp");
+//            RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+//            dispatcher.forward(request, response);
         } else if (cart != null) {
             boolean isExist = databaseRef.CheckRechargeNumberExistance(Integer.parseInt(cardNumber));
             if (isExist) {
                 databaseRef.updateUserBalance(user, rechargeCardValue);
-        //        user.getCreditCard().setBalance(databaseRef.getUserBalance(user.getEmail()));
+                //        user.getCreditCard().setBalance(databaseRef.getUserBalance(user.getEmail()));
                 session.setAttribute("user", user);
             }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/ShoppingCart.jsp");
-            dispatcher.forward(request, response);
+            response.sendRedirect("index.jsp");
+            //RequestDispatcher dispatcher = request.getRequestDispatcher("/ShoppingCart.jsp");
+            //dispatcher.forward(request, response);
         } else if (checkout != null) {
             boolean isExist = databaseRef.CheckRechargeNumberExistance(Integer.parseInt(cardNumber));
             if (isExist) {
                 databaseRef.updateUserBalance(user, rechargeCardValue);
-          //      user.getCreditCard().setBalance(databaseRef.getUserBalance(user.getEmail()));
+                //      user.getCreditCard().setBalance(databaseRef.getUserBalance(user.getEmail()));
                 session.setAttribute("user", user);
             }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/checkout.jsp");
-            dispatcher.forward(request, response);
+            response.sendRedirect("index.jsp");
+            //RequestDispatcher dispatcher = request.getRequestDispatcher("/checkout.jsp");
+            //dispatcher.forward(request, response);
         }
     }
 //   }

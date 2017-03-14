@@ -15,22 +15,21 @@
         <script src="JS/jquery.js"></script>
         <script src="JS/getAllProducts.js"></script>
         <script src="JS/addToShoppingCart.js"></script>
-        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
         <script>
             document.getElementById("success").style.display = "none";
         </script>
     </head>
     <body>
         <!-- beshoy edit -->
-        <div class="w3-panel w3-blue" style="display: none;" id="success">
-            <span class="w3-closebtn" onclick="this.parentElement.style.display = 'none'">X</span>
-            <p>Invalid username or password</p>
+        <div class="invalidlogin alert  alert-error fade in" style="display: none;" id="success">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <strong>Invalid username or password</strong>
         </div>
         <c:if test="${!empty requestScope.invalid}">
             <script>
                 document.getElementById("success").style.display = "block";
             </script>
-           <c:remove var="invalid" scope="request"/>
+            <c:remove var="invalid" scope="request"/>
         </c:if>
         <!-- beshoy edit end -->
 

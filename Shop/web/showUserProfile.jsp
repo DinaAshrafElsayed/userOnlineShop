@@ -3,9 +3,9 @@
 <%@include file="AdminHead.jsp" %>
 
 <%@include file="AdminUp.jsp" %>
-<table class="table table-hover table-bordered">
+<table class="table  table-bordered">
 
-    <tr>
+    <tr style="background-color: black;color: white">
         <th>Name</th>
         <th>Email</th>
         <th>Phone</th>
