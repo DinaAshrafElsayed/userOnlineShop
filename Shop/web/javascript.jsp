@@ -67,7 +67,7 @@
             request = new XMLHttpRequest();
         else if (window.ActiveXObject)
             request = new ActiveXObject(Microsoft.XMLHTTP);
-        request.onreadystatechange = handleCheckCreditCardNumberUniqueness();
+        request.onreadystatechange = handleCheckCreditCardNumberUniqueness;
 
         request.open("GET", "CheckCreditNumberUniqueness?creditNumber=" + document.getElementById("creditCardNumber").value, true);
         request.send(null);

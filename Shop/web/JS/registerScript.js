@@ -7,15 +7,14 @@ var emialvalue, phonevalue, cardNumber;
 
 function validatePasswordggg()
 {
-    console.log("found");
     var password = document.getElementById("password").value;
     var confirmPassword = document.getElementById("confirmPassword").value;
-    console.log(password);
-    console.log(confirmPassword);
     if (password == confirmPassword) {
         document.getElementById("password_error").style.display = "none";
+        document.getElementById("registerButton").disabled = false;
     } else {
         document.getElementById("password_error").style.display = "inline";
+        document.getElementById("registerButton").disabled = true;
     }
 }
 
@@ -37,10 +36,14 @@ function validPhone()
 
     isValidPhone = reMobile.test(phonevalue);
 
-    if (!isValidPhone)
+    if (!isValidPhone){
         document.getElementById("mobile_error").style.display = "inline";
-    else
+        document.getElementById("registerButton").disabled = true;
+    }
+    else{
         document.getElementById("mobile_error").style.display = "none";
+        document.getElementById("registerButton").disabled = false;
+    }
 }
 
 function validCreditNumber()
