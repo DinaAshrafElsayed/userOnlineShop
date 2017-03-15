@@ -47,8 +47,6 @@
                 <label for="file">image 1</label><input type="file" name="file"  id="file" required/>
                 <label for="file2">image 2</label><input type="file" name="file2"  id="file1" required/>
                 <label for="file3">image 3</label><input type="file" name="file3"  id="file2" required/>
-
-
             </div>
             <button type="submit"  class="btn btn-default">Submit</button>
         </form>

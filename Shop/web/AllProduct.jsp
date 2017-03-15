@@ -10,7 +10,7 @@
         <td>price</td>
         <td>Category</td>
         <td>Discount</td>
-        <td><a>update</a></td>
+        <td><a>Update</a></td>
 
     </tr>
 
@@ -21,7 +21,7 @@
             <td>${product.price}</td>
             <td>${product.categoryName}</td>
             <td>${product.discount}</td>
-            <td><a href="updateProduct.jsp?id=${product.id}">update</a></td>
+            <td><a href="updateProduct.jsp?id=${product.id}">Update</a></td>
 
         </tr>
     </c:forEach>  
