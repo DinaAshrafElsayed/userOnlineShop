@@ -49,7 +49,7 @@ public interface DataBaseHandlerInterface {
 
     public ArrayList<Product> getDiscountedProducts();//done
 
-    public boolean CheckCreditCardNumberExistance(int number);//done
+    public boolean CheckCreditCardNumberExistance(long number);//done
 
     // updates
     public ArrayList<Orders> GetUserOrders(String email);

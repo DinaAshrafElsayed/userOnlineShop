@@ -50,12 +50,38 @@
     }
     function handlecheckUserAlreadySignedUp() {
         if (request.readyState === 4 && request.status === 200) {
-                       if (request.responseText == "Exist") {
+            if (request.responseText == "Exist") {
                 document.getElementById("email_error").style.display = "inline";
                 document.getElementById("registerButton").disabled = true;
-            } else
+            } else {
                 document.getElementById("registerButton").disabled = false;
+                document.getElementById("email_error").style.display = "none";
+            }
         }
     }
+</script>
+<script>
+    var request = null;
+    function checkCreditCardNumberUniqueness() {
+        if (window.XMLHttpRequest)
+            request = new XMLHttpRequest();
+        else if (window.ActiveXObject)
+            request = new ActiveXObject(Microsoft.XMLHTTP);
+        request.onreadystatechange = handleCheckCreditCardNumberUniqueness();
 
+        request.open("GET", "CheckCreditNumberUniqueness?creditNumber=" + document.getElementById("creditCardNumber").value, true);
+        request.send(null);
+
+    }
+    function handleCheckCreditCardNumberUniqueness() {
+        if (request.readyState === 4 && request.status === 200) {
+            if (request.responseText == "Exist") {
+                document.getElementById("credit_error").style.display = "inline";
+                document.getElementById("registerButton").disabled = true;
+            } else {
+                document.getElementById("registerButton").disabled = false;
+                document.getElementById("credit_error").style.display = "none";
+            }
+        }
+    }
 </script>
