@@ -71,15 +71,15 @@ public class servletAddProduct extends HttpServlet {
                     try {
                         String itemName = item.getName();
                         System.out.println(itemName);
-                        String path = "E:\\images\\";
-
+                        String path = request.getServletContext().getRealPath("");
+                        path+="images\\";
                         File savedFile = new File(path + itemName);
                         if (!(images.getImagesUrl().contains("path + itemName"))) {
                             item.write(savedFile);
-                            images.addItem(path + itemName);
+                            images.addItem("images\\"+itemName);
                         }
                         if (i < 1) {
-                            mainImage = path + itemName;
+                            mainImage = "images\\"+itemName;
                             i++;
                         }
 

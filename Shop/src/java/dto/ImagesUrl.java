@@ -14,17 +14,17 @@ import java.util.ArrayList;
  */
 public class ImagesUrl implements Serializable {
 
-    private ArrayList<String> ImagesUrl = new ArrayList<>();
+    private ArrayList<String> imagesUrl = new ArrayList<>();
 
     /**
-     * @return the ImagesUrl
+     * @return the imagesUrl
      */
     public boolean addItem(String url) {
-        return ImagesUrl.add(url);
+        return imagesUrl.add(url);
     }
 
     public ArrayList<String> getImagesUrl() {
-        return ImagesUrl;
+        return imagesUrl;
     }
 
     // updates

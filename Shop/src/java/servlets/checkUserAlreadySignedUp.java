@@ -6,61 +6,32 @@
 package servlets;
 
 import database.DataBaseHandler;
-import dto.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Ahmed labib
+ * @author Samir
  */
-@WebServlet(name = "GetProduct", urlPatterns = {"/GetProduct"})
-public class GetProduct extends HttpServlet {
+@WebServlet(name = "checkUserAlreadySignedUp", urlPatterns = {"/checkUserAlreadySignedUp"})
+public class checkUserAlreadySignedUp extends HttpServlet {
 
-    DataBaseHandler dataBaseHandler;
-
-    @Override
-    public void init() throws ServletException {
-        super.init(); //To change body of generated methods, choose Tools | Templates.
-        this.dataBaseHandler = DataBaseHandler.getinstance();
-
-    }
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            int productID = Integer.parseInt(request.getParameter("id"));
-            Product selectedProduct = dataBaseHandler.getProduct(productID);
-            HttpSession session = request.getSession(true);
-            ArrayList<Product> products = (ArrayList<Product>) session.getAttribute("products");
-//            if (products != null) {
-//                for (Product product1 : products) {
-//                    if (product1.getId() == productID) {
-//                        selectedProduct = product1;
-//                    }
-//                }
-//            }
-            System.out.println("inseide servlet "+selectedProduct.getMainImageUrl());
-            session.setAttribute("selectedProduct", selectedProduct);
-            System.out.println("product id " + productID);
-            response.sendRedirect("FullProductDetails.jsp");
+        PrintWriter out = response.getWriter();
+       String userEmail = request.getParameter("email");
+        DataBaseHandler databaseRef = DataBaseHandler.getinstance();
+        boolean isExist = databaseRef.checkEmailExistance(userEmail);
+        if(isExist){
+            out.write("Exist");
+        }
+        else{
+            out.write("NotExist");
         }
     }
 

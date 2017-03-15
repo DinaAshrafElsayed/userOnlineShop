@@ -13,10 +13,8 @@ function validatePasswordggg()
     console.log(password);
     console.log(confirmPassword);
     if (password == confirmPassword) {
-        console.log("equal");
         document.getElementById("password_error").style.display = "none";
     } else {
-        console.log("!equal");
         document.getElementById("password_error").style.display = "inline";
     }
 }
@@ -56,17 +54,5 @@ function validCreditNumber()
         document.getElementById("credit_error").style.display = "none";
 }
 
-function finalValidatation() {
-    if (!isValidEmail)
-    {
-        document.getElementById("email_error").style.display = "inline";
-    } else if (!isValidPhone)
-    {
-        document.getElementById("mobile_error").style.display = "inline";
-    } else if (!isValidCreditNumber)
-    {
-        document.getElementById("credit_error").style.display = "inline";
-    }
-}
 ;
 

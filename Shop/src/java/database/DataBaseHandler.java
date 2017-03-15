@@ -344,7 +344,7 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
                 productList.add(new Product(resultSet2.getString("productName"), resultSet2.getString("imageUrl"),
                         otherImagesUrl, resultSet2.getInt("quantity"),
                         resultSet2.getDouble("price"), resultSet2.getString("description"),
-                        resultSet2.getDouble("discount"), resultSet2.getString("categoryName")));
+                        resultSet2.getDouble("discount"), resultSet2.getString("categoryName"),resultSet2.getInt("product_id")));
             }
             return productList;
         } catch (SQLException ex) {
@@ -628,9 +628,12 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
                 PreparedStatement imagesPreparedStatement = getConnection().prepareStatement("select * "
                         + "from productimages where products_product_id =? ");
                 imagesPreparedStatement.setInt(1, productID);
+                System.out.println("id "+productID);
                 ResultSet ImagesresultSet = imagesPreparedStatement.executeQuery();
                 while (ImagesresultSet.next()) {
-                    otherImagesUrl.addItem(ImagesresultSet.getString("imageUrl"));
+                    String url=ImagesresultSet.getString("imageUrl");
+                    otherImagesUrl.addItem(url);
+                    System.out.println("inside loop image url"+url);
                 }
                 Product product = new Product(resultSet.getString("productName"),
                         resultSet.getString("imageUrl"),
@@ -683,11 +686,11 @@ public class DataBaseHandler implements DataBaseAdminHandlerInterface, DataBaseH
 
     @Override
     // ajax in register and in edit
-    public boolean CheckCreditCardNumberExistance(int number) {
+    public boolean CheckCreditCardNumberExistance(long number) {
         try {
             PreparedStatement preparedStatement = getConnection().prepareStatement("select * from creditcard"
                     + " where number=?");
-            preparedStatement.setInt(1, number);
+            preparedStatement.setLong(1, number);
             ResultSet resultset = preparedStatement.executeQuery();
             if (resultset.next()) {
                 // CreditCardNumber found so i can't add new one 
