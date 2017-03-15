@@ -26,15 +26,15 @@ public class CheckCreditNumberUniqueness extends HttpServlet {
         PrintWriter out = response.getWriter();
         String creditNumber = request.getParameter("creditNumber");
         DataBaseHandler databaseRef = DataBaseHandler.getinstance();
-        System.out.println("asdasdasdasasd"+Long.parseLong(creditNumber));
-        boolean isExist = databaseRef.CheckCreditCardNumberExistance(Long.parseLong(creditNumber));
-        if(isExist){
-            out.print("Exist");
+        if (!creditNumber.equals("")) {
+            boolean isExist = databaseRef.CheckCreditCardNumberExistance(Long.parseLong(creditNumber));
+            if (isExist) {
+                out.write("Exist");
+            } else {
+                out.write("NotExist");
+            }
         }
-        else{
-            out.print("NotExist");
-        }
-      
+        out.close();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
