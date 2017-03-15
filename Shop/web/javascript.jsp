@@ -74,8 +74,9 @@
 
     }
     function handleCheckCreditCardNumberUniqueness() {
-        if (request.readyState === 4 && request.status === 200) {
+        if (request.readyState == 4 && request.status == 200) {
             if (request.responseText == "Exist") {
+                console.log("exist");
                 document.getElementById("credit_error").style.display = "inline";
                 document.getElementById("registerButton").disabled = true;
             } else {

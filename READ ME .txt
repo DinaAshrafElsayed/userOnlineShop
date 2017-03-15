@@ -1,0 +1,29 @@
+Online Shop
+Requirment:
+	- prefered JDK8 
+	- TomCat 8.0.27
+To run Admin :
+	- Add to "tomcat-users.xml" role " manager " and user name and password
+
+User Services :
+	- Login and Logout 
+	- Register 
+	- view and edit profile 
+	- can surf the website,search product and add it to shopping cart 
+	- can manipulate the shopping cart ( add , remove , decrease quantity)
+	- can view product 
+	- can search by name , category and price 
+	- to buy a product user must have an account 
+	- can recharge his balance by voucher added by admin 
+
+-Admin Services :
+	- View all product 
+	- Edit Product ( add quantity , add discount , change details ,etc.. )
+	- Add product
+	- View all users 
+	- view a User profile
+	- View users that have orders
+	- view user orders 
+	- Add voucher Cards ( Recharge cards)
+	 
+	
