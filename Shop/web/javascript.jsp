@@ -67,15 +67,16 @@
             request = new XMLHttpRequest();
         else if (window.ActiveXObject)
             request = new ActiveXObject(Microsoft.XMLHTTP);
-        request.onreadystatechange = handleCheckCreditCardNumberUniqueness();
+        request.onreadystatechange = handleCheckCreditCardNumberUniqueness;
 
         request.open("GET", "CheckCreditNumberUniqueness?creditNumber=" + document.getElementById("creditCardNumber").value, true);
         request.send(null);
 
     }
     function handleCheckCreditCardNumberUniqueness() {
-        if (request.readyState === 4 && request.status === 200) {
+        if (request.readyState == 4 && request.status == 200) {
             if (request.responseText == "Exist") {
+                console.log("exist");
                 document.getElementById("credit_error").style.display = "inline";
                 document.getElementById("registerButton").disabled = true;
             } else {

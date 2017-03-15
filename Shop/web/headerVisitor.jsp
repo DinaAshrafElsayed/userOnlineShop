@@ -62,11 +62,7 @@
                                     <div class="control-group">
                                         <input type="password" name="userPassword" placeholder="Password" required="">
                                     </div>
-                                    <div class="control-group">
-                                        <label class="checkbox">
-                                            <input type="checkbox" name="remember" value="remember"> Remember me
-                                        </label>
-                                    </div>
+
                                     <br>
                                     <button type="submit" class="btn btn-success">Sign in</button>
                                     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
