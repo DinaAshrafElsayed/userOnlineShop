@@ -15,12 +15,24 @@
         <script src="JS/jquery.js"></script>
         <script src="JS/getAllProducts.js"></script>
         <script src="JS/addToShoppingCart.js"></script>
+        <script>
+            document.getElementById("success").style.display = "none";
+        </script>
     </head>
     <body>
         <!-- beshoy edit -->
-        
+        <div class="invalidlogin alert  alert-error fade in" style="display: none;" id="success">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <strong>Invalid username or password</strong>
+        </div>
+        <c:if test="${!empty requestScope.invalid}">
+            <script>
+                document.getElementById("success").style.display = "block";
+            </script>
+            <c:remove var="invalid" scope="request"/>
+        </c:if>
         <!-- beshoy edit end -->
-        
+
         <c:if test="${!empty sessionScope.user}">
             <jsp:include page ='headeruser.jsp'/>
         </c:if> 
@@ -48,13 +60,13 @@
         </c:if>
         <c:if test="${!empty param.name or !empty param.category}">
             <c:if test="${!empty param.name and !empty param.category}">
-                <script>loadSearchField("${param.category}","${param.name}")</script>
+                <script>loadSearchField("${param.category}", "${param.name}")</script>
             </c:if>
             <c:if test="${!empty param.name and empty param.category}">
-                <script>loadSearchField("All","${param.name}")</script>
+                <script>loadSearchField("All", "${param.name}")</script>
             </c:if>
             <c:if test="${empty param.name and !empty param.category}">
-                <script>loadSearchField("${param.category}","")</script>
+                <script>loadSearchField("${param.category}", "")</script>
             </c:if>
         </c:if>
     </body>

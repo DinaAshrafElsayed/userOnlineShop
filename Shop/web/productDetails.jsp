@@ -9,14 +9,14 @@
         <div id="gallery" class="span3">
             <c:set var="item" scope="session" value="${sessionScope.selectedProduct}"/>
             <a href="${item.getMainImageUrl()}">
-                <img src="${item.getMainImageUrl()}" style="width:100%" alt="Fujifilm FinePix S2950 Digital Camera">
+                <img src="${item.getMainImageUrl()}" style="width:100%" alt="${item.getProductName()}">
             </a>
             <div id="differentview" class="moreOptopm carousel slide">
                 <div class="carousel-inner">
                     <div class="item active">
-                        <c:forEach items="${sessionScope.selectedProduct.otherImagesUrls.imagesUrl}" var="itemImage">
+                        <c:forEach items="${sessionScope.selectedProduct.otherImagesUrls.imagesUrl  }" var="itemImage">
                             <a href="${itemImage}"> <img style="width:29%" src="${itemImage}" alt=""></a>
-                        </c:forEach>
+                            </c:forEach>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                         <div class="controls">
                             <input type="number" id="productQuantity" value="1" class="span1" placeholder="Qty." min="1" max ="${product.getQuantity()}">
                             <c:if test="${item.getQuantity() >0}">
-                            <button type="button" class="btn btn-large btn-primary pull-right" onclick="addToCart(this)"> Add to cart <i class="icon-shopping-cart" id='${item.getId()}'></i></i></button>
+                                <button type="button" class="btn btn-large btn-primary pull-right" onclick="addToCart(this)"> Add to cart <i class="icon-shopping-cart" id='${item.getId()}'></i></i></button>
                             </c:if>
                             <c:if test="${item.getQuantity() ==0}">
                                 <h4 class="pull-right" style="color: red;"> SoldOut </h4>    

@@ -39,15 +39,9 @@
 
         <label for="exampleInputFile">Product</label>
         <select  class="form-control" id="name">
-            <sql:setDataSource var="db" driver="com.mysql.jdbc.Driver"  
-                               url="jdbc:mysql://localhost/onlineshopping"  
-                               user="root"  password=""/>  
-            <sql:query dataSource="${db}" var="rs">  
-                SELECT * from products;  
-            </sql:query>  
-            <c:forEach var="product" items="${rs.rows}">  
-                <option id="old${product.product_id}" class="${product.quantity}" value="${product.product_id}">
-                    ${product.productname}
+            <c:forEach var="product" items="${requestScope.products}">  
+                <option id="old${product.id}" class="${product.quantity}" value="${product.id}">
+                    ${product.productName}
                 </option>
 
             </c:forEach>  

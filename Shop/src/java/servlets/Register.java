@@ -11,6 +11,7 @@ import dto.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -56,7 +57,7 @@ public class Register extends HttpServlet {
         String email = request.getParameter("emial");
         String password = request.getParameter("password");
         String DateOfBirth = request.getParameter("DateOfBirth");
-        System.out.println("register "+DateOfBirth);
+        System.out.println("register " + DateOfBirth);
         LocalDate localDate = LocalDate.parse(DateOfBirth);
         String gender = request.getParameter("gender");
         String address = request.getParameter("address");
@@ -67,6 +68,8 @@ public class Register extends HttpServlet {
         CreditCard creditCard = new CreditCard(creditCardNumber, creditCardExpireDate1, 1000);
         User newUser = new User(email, null, gender, firstName, lastName, localDate, password, mobile, address, "user", creditCard);
         dataBaseHandler.signup(newUser);
+        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+        rd.forward(request, response);
     }
     // updates
 

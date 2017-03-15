@@ -1,4 +1,3 @@
-<%@ page session="false" %>
 <%@include file="AdminHead.jsp" %>
 <%@include file="AdminUp.jsp" %>
 <div class="w3-display-container w3-hover-opacity w3-animate-zoom">
@@ -11,8 +10,6 @@
     </div>
 </div>
 <%@include file="slider_1.jsp" %>
-<p>Total Products <span class="w3-badge w3-green">6</span></p>
-<p>Total Users <span class="w3-badge w3-red">8</span></p>
 
 
 <%@include file="AdminDown.jsp" %>

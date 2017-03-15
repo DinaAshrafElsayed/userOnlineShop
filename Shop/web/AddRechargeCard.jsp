@@ -50,7 +50,7 @@
     <script>
         document.getElementById("success").style.display = "block";
     </script>
-    <% request.removeAttribute("success");%>
+
 
 </c:if>
 

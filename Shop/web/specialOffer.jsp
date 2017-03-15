@@ -18,39 +18,39 @@
         <script src="JS/addToShoppingCart.js"></script>
     </head>
     <body>
-    <c:if test="${!empty sessionScope.user}">
-        <jsp:include page ='headeruser.jsp'/>
-    </c:if> 
-    <c:if test="${empty sessionScope.user}">
-        <jsp:include page ='headerVisitor.jsp'/>
-        <jsp:include  page="slider.jsp" />
-    </c:if>
-    <div id="mainBody">
-        <div class="container">
-            <div class="row" id="includeBody">
-                <div id="sidebar"><jsp:include page ='sideBar.jsp'/></div>
-                <div id="offers"><jsp:include page ='SpecialOfferBody.jsp'/></div>
+        <c:if test="${!empty sessionScope.user}">
+            <jsp:include page ='headeruser.jsp'/>
+        </c:if> 
+        <c:if test="${empty sessionScope.user}">
+            <jsp:include page ='headerVisitor.jsp'/>
+            <jsp:include  page="slider.jsp" />
+        </c:if>
+        <div id="mainBody">
+            <div class="container">
+                <div class="row" id="includeBody">
+                    <div id="sidebar"><jsp:include page ='sideBar.jsp'/></div>
+                    <div id="offers"><jsp:include page ='SpecialOfferBody.jsp'/></div>
+                </div>
             </div>
         </div>
-    </div>
-    <jsp:include page ='footer.html'/>
-    <jsp:include page ='javascript.jsp'/>
-    <c:if test="${empty sessionScope.products and sessionScope.products.size() != 0 }">
-        <script>getAllProducts();</script>
-    </c:if>
-    <c:if test="${!empty sessionScope.products and sessionScope.products.size() != 0 }">
-        <script>loadProducts();</script>
-    </c:if>
-    <c:if test="${!empty param.name or !empty param.category}">
-        <c:if test="${!empty param.name and !empty param.category}">
-            <script>loadSearchField("${param.category}", "${param.name}")</script>
+        <jsp:include page ='footer.html'/>
+        <jsp:include page ='javascript.jsp'/>
+        <c:if test="${empty sessionScope.products and sessionScope.products.size() != 0 }">
+            <script>getAllProducts();</script>
         </c:if>
-        <c:if test="${!empty param.name and empty param.category}">
-            <script>loadSearchField("All", "${param.name}")</script>
+        <c:if test="${!empty sessionScope.products and sessionScope.products.size() != 0 }">
+            <script>loadProducts();</script>
         </c:if>
-        <c:if test="${empty param.name and !empty param.category}">
-            <script>loadSearchField("${param.category}", "")</script>
+        <c:if test="${!empty param.name or !empty param.category}">
+            <c:if test="${!empty param.name and !empty param.category}">
+                <script>loadSearchField("${param.category}", "${param.name}")</script>
+            </c:if>
+            <c:if test="${!empty param.name and empty param.category}">
+                <script>loadSearchField("All", "${param.name}")</script>
+            </c:if>
+            <c:if test="${empty param.name and !empty param.category}">
+                <script>loadSearchField("${param.category}", "")</script>
+            </c:if>
         </c:if>
-    </c:if>
-</body>
+    </body>
 </html>

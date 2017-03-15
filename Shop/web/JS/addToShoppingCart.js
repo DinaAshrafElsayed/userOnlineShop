@@ -5,10 +5,10 @@ function addToCart(e) {
     console.log(productID);
     var productQuantity = $("#productQuantity").val();
     console.log(productQuantity);
-    if (productQuantity != 'undefined' || productQuantity != 'null' || productQuantity !='' )
+    if (productQuantity != 'undefined' || productQuantity != 'null' || productQuantity != '')
         $.get("AddToShoppingCart?productID=" + productID + "&productQuantity=" + productQuantity, callback2);
     else
-        $.get("AddToShoppingCart?productID=" + productID , callback2);
+        $.get("AddToShoppingCart?productID=" + productID, callback2);
 }
 
 

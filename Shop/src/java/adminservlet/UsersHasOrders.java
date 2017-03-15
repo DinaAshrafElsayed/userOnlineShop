@@ -34,7 +34,7 @@ public class UsersHasOrders extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         DataBaseHandler databaseRef = DataBaseHandler.getinstance();
+        DataBaseHandler databaseRef = DataBaseHandler.getinstance();
         ArrayList<String> usersHasOrdersList = databaseRef.getUserThatHasOrders();
         request.setAttribute("usersHasOrdersList", usersHasOrdersList);
         System.out.println("asdadda");

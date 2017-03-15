@@ -31,7 +31,7 @@
                             </div>
                             <div class="content">
                                 <p><c:out value="${user.firstName.toUpperCase()} "/><c:out value="${user.lastName.toUpperCase()}"/></p>
-                                <p><a href='/AdminJsp/GetUserDetails?id=<c:out value="${user.email}"/>' class="btn btn-default">View Profile</a></p>
+                                <p><a href='GetUserDetails?id=<c:out value="${user.email}"/>' class="btn btn-default">View Profile</a></p>
                             </div>
                         </div>
                     </div>

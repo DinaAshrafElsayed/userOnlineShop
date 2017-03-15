@@ -24,18 +24,7 @@
                 </div>
             </div>
 
-            <div class="control-group">
-                <label class="control-label" for="input_email">Email <sup>*</sup></label>
-                <div class="controls">
-                    <input type="text" id="email" name="email"value="<c:out value="${userprofile.getEmail()}"/>"name="emial" placeholder="Email"  onblur="validEmail()" required >
-                    <span>
-                        <div class="alert  alert-error fade in custome-error" id="email_error">
-                            <button type="button" class="close" data-dismiss="alert">x</button>
-                            <strong>Email must be in form xyz@xxx.com</strong>
-                        </div>
-                    </span>
-                </div>
-            </div> -->
+
             <div class="control-group">
                 <label class="control-label">Date of Birth<sup>*</sup></label>
                 <div class="controls">

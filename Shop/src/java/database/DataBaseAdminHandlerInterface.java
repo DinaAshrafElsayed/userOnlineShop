@@ -13,15 +13,24 @@ import java.util.ArrayList;
  *
  * @author Dina Ashraf
  */
-public interface DataBaseAdminHandlerInterface
-{
+public interface DataBaseAdminHandlerInterface {
+
     public boolean addProduct(Product product);
+
     public boolean editProduct(Product product);
+
     public boolean removeProduct(Product product);
+
     public ArrayList<User> getAllUsers();
+
     public User getUser(String email);
+
     // updates
     public boolean addRechargeCards(int number, int amount);
+
     public int editQuantity(int id, int quantity);
+
+    public ArrayList<Product> getProducts();
+
     //end of updates
 }

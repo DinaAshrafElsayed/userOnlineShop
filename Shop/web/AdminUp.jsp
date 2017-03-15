@@ -19,10 +19,7 @@
 
                     <!-- User Account: style can be found in dropdown.less -->
                     <li>
-                        <a >
 
-                            Log Out
-                        </a>
 
                     </li>
                 </ul>
@@ -46,7 +43,7 @@
                     </div>
                 </div>
                 <!-- search form -->
-                <form action="CustomProduct.jsp" method="get" class="sidebar-form">
+                <form action="GetCustomProduct" method="get" class="sidebar-form">
                     <div class="input-group">
                         <input type="text" name="q" class="form-control" placeholder="Search..."/>
                         <span class="input-group-btn">
@@ -69,9 +66,9 @@
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="AllProduct.jsp"><i class="fa fa-angle-double-right"></i> Show All </a></li>
+                            <li><a href="GetProducts2"><i class="fa fa-angle-double-right"></i> Show All </a></li>
                             <li><a href="addProduct.jsp"><i class="fa fa-angle-double-right"></i> Add Product</a></li>
-                            <li><a href="AddQuantity.jsp"><i class="fa fa-angle-double-right"></i> Add Quantity</a></li>
+                            <li><a href="GetProducts"><i class="fa fa-angle-double-right"></i> Add Quantity</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
