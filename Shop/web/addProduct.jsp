@@ -23,7 +23,7 @@
                 <label for="exampleInputEmail1">Quantity</label><input id="quantity" min="0" name="quantity" type="number" class="form-control" required/>
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">discount</label><input id="discount" min="0" name="discount" type="number" class="form-control" required/>
+                <label for="exampleInputEmail1">discount</label><input id="discount" min="0" max="90" name="discount" type="number" class="form-control" required/>
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Product Price </label><input type="number" min="0" name="price" class="form-control" id="price" required/>
@@ -47,8 +47,7 @@
                 <label for="exampleInputFile">image 1</label><input type="file" name="file"  id="file" required/>
                 <label for="exampleInputFile">image 2</label><input type="file" name="file2"  id="file1" required/>
                 <label for="exampleInputFile">image 3</label><input type="file" name="file3"  id="file2" required/>
-                <label for="exampleInputFile">image 4</label><input type="file" name="file4"  id="file3" required/>
-                <label for="exampleInputFile">image 5</label><input type="file" name="file5"  id="file4" required/>
+
 
             </div>
             <button type="submit"  class="btn btn-default">Submit</button>
